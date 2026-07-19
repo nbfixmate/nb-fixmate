@@ -1,0 +1,75 @@
+---
+type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "secondaryOnDark"
+  | "onBrand"
+  | "text";
+
+interface Props {
+  href?: string;
+  type?: "button" | "submit" | "reset";
+  form?: string;
+  variant?: ButtonVariant;
+  ariaLabel?: string;
+  external?: boolean;
+  openQuote?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  type = "button",
+  form,
+  variant = "primary",
+  ariaLabel,
+  external = false,
+  openQuote = false,
+  class: className,
+} = Astro.props;
+
+const variantClasses: Record<ButtonVariant, string> = {
+  primary:
+    "border-primary bg-primary text-foreground hover:border-primary-hover hover:bg-primary-hover",
+  secondary:
+    "border-accent bg-transparent text-accent hover:bg-accent hover:text-white",
+  secondaryOnDark:
+    "border-white bg-transparent text-white hover:border-white hover:bg-white hover:text-accent",
+  onBrand:
+    "border-white bg-white text-accent hover:border-accent hover:bg-accent hover:text-white",
+  text: "border-transparent bg-transparent text-accent hover:text-primary-hover",
+};
+
+const buttonClasses = [
+  "inline-flex min-h-12 items-center justify-center rounded-[2px] border px-4 py-3 font-heading text-lg font-bold tracking-tight uppercase transition-colors duration-200 sm:px-5",
+  variantClasses[variant],
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class={buttonClasses}
+      aria-label={ariaLabel}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      data-open-quote={openQuote ? true : undefined}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      type={type}
+      form={form}
+      class={buttonClasses}
+      aria-label={ariaLabel}
+      data-open-quote={openQuote ? true : undefined}
+    >
+      <slot />
+    </button>
+  )
+}

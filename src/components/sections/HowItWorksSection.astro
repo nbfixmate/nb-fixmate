@@ -1,0 +1,90 @@
+---
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+
+interface Step {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  steps?: Step[];
+  surface?: boolean;
+  showCta?: boolean;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const {
+  eyebrow = "How it works",
+  title = "How to Get a Free Handyman Quote in Adelaide",
+  description = "A simple process for homeowners, landlords, property managers, and businesses to request a free quote from NB Fixmate.",
+  steps = [
+    {
+      title: "Describe the work",
+      description:
+        "Tell us the handyman or property maintenance service you need and a short description of the job.",
+    },
+    {
+      title: "Share your suburb",
+      description:
+        "Add your Adelaide suburb and the best contact details so we can follow up quickly.",
+    },
+    {
+      title: "Send your enquiry",
+      description:
+        "Request a free quote by form, phone, email, or WhatsApp. No obligation to book.",
+    },
+    {
+      title: "Confirm next steps",
+      description:
+        "We review the details, discuss the work with you, and move ahead when you are ready.",
+    },
+  ],
+  surface = true,
+  showCta = true,
+  ctaLabel = "Request a free quote",
+  ctaHref = "/contact",
+} = Astro.props;
+---
+
+<section class:list={[surface ? "bg-surface" : "bg-white", "py-16 sm:py-24"]}>
+  <Container>
+    <SectionHeading
+      eyebrow={eyebrow}
+      title={title}
+      description={description}
+      alignment="center"
+    />
+    <ol class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        steps.map((step, index) => (
+          <li class="rounded-[2px] border border-border bg-white p-5 text-center sm:text-left">
+            <p
+              class="font-heading text-4xl font-bold tracking-tight text-primary"
+              aria-hidden="true"
+            >
+              {String(index + 1).padStart(2, "0")}
+            </p>
+            <p class="sr-only">Step {index + 1}</p>
+            <h3 class="mt-3 text-lg font-bold tracking-tight">{step.title}</h3>
+            <p class="mt-2 text-sm text-muted-foreground">{step.description}</p>
+          </li>
+        ))
+      }
+    </ol>
+    {
+      showCta && (
+        <div class="mt-10 flex justify-center">
+          <Button href={ctaHref} openQuote={ctaHref === "/contact"}>
+            {ctaLabel}
+          </Button>
+        </div>
+      )
+    }
+  </Container>
+</section>

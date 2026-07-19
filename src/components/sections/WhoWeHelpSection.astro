@@ -1,0 +1,78 @@
+---
+import { House, Building2, KeyRound, Briefcase } from "@lucide/astro";
+import { audiences } from "../../config/audiences";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+import IconBox from "../ui/IconBox.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  surface?: boolean;
+  showCta?: boolean;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const {
+  eyebrow = "Who we help",
+  title = "Handyman Services for Homes, Rentals & Businesses in Adelaide",
+  description = "NB Fixmate supports homeowners, landlords, property managers, and commercial clients with fully insured handyman and property maintenance services across Adelaide.",
+  surface = false,
+  showCta = false,
+  ctaLabel = "Request a free quote",
+  ctaHref = "/contact",
+} = Astro.props;
+
+const icons = [House, KeyRound, Building2, Briefcase];
+const cardClass = surface
+  ? "border-border bg-white"
+  : "border-border bg-surface";
+---
+
+<section class:list={[surface ? "bg-surface" : "bg-white", "py-16 sm:py-24"]}>
+  <Container>
+    <SectionHeading
+      eyebrow={eyebrow}
+      title={title}
+      description={description}
+      alignment="center"
+    />
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        audiences.map((audience, index) => {
+          const Icon = icons[index] ?? House;
+          return (
+            <article
+              class:list={[
+                "rounded-[2px] border p-5 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-sm",
+                cardClass,
+              ]}
+            >
+              <IconBox>
+                <Icon class="size-6" aria-hidden="true" />
+              </IconBox>
+              <h3 class="mt-4 text-lg font-bold tracking-tight text-accent">
+                {audience.title}
+              </h3>
+              <p class="mt-2 text-sm text-muted-foreground">
+                {audience.description}
+              </p>
+            </article>
+          );
+        })
+      }
+    </div>
+    {
+      showCta && (
+        <div class="mt-10 flex justify-center">
+          <Button href={ctaHref} openQuote={ctaHref === "/contact"}>
+            {ctaLabel}
+          </Button>
+        </div>
+      )
+    }
+  </Container>
+</section>

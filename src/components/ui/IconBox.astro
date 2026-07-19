@@ -1,0 +1,32 @@
+---
+type IconBoxVariant = "primary" | "accent";
+
+interface Props {
+  variant?: IconBoxVariant;
+  label?: string;
+  class?: string;
+}
+
+const {
+  variant = "primary",
+  label,
+  class: className,
+} = Astro.props;
+
+const variantClasses: Record<IconBoxVariant, string> = {
+  primary: "bg-primary-light text-primary",
+  accent: "bg-accent text-white",
+};
+---
+
+<span
+  class:list={[
+    "inline-flex size-12 shrink-0 items-center justify-center rounded-sm",
+    variantClasses[variant],
+    className,
+  ]}
+  aria-hidden={label ? undefined : "true"}
+  aria-label={label}
+>
+  <slot />
+</span>

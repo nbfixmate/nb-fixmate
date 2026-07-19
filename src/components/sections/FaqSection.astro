@@ -1,0 +1,90 @@
+---
+import { getFaqItems, type FaqSetKey } from "../../config/faq";
+import { buildFaqPageSchema } from "../../lib/schema";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+import JsonLd from "../seo/JsonLd.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+
+interface Props {
+  set?: FaqSetKey;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  surface?: boolean;
+  showCta?: boolean;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const {
+  set = "home",
+  eyebrow = "FAQs",
+  title = "Handyman FAQs for Adelaide Homeowners & Landlords",
+  description = "Clear answers about NB Fixmate handyman services, free quotes, insurance, and property maintenance across Adelaide and surrounding areas.",
+  surface = false,
+  showCta = false,
+  ctaLabel = "Still have a question? Contact us",
+  ctaHref = "/contact",
+} = Astro.props;
+
+const items = getFaqItems(set);
+const faqSchema = items.length > 0 ? buildFaqPageSchema(items) : null;
+const panelClass = surface
+  ? "border-border bg-white"
+  : "border-border bg-surface";
+---
+
+<section class:list={[surface ? "bg-surface" : "bg-white", "py-16 sm:py-24"]}>
+  {faqSchema && <JsonLd data={faqSchema} />}
+  <Container>
+    <SectionHeading
+      eyebrow={eyebrow}
+      title={title}
+      description={description}
+      alignment="center"
+    />
+    <div
+      class:list={[
+        "mx-auto mt-10 max-w-3xl divide-y divide-border rounded-[2px] border",
+        panelClass,
+      ]}
+    >
+      {
+        items.map((item, index) => (
+          <details class="group" open={index === 0}>
+            <summary class="cursor-pointer list-none px-5 py-5 font-heading text-base font-semibold tracking-tight text-foreground transition-colors duration-200 marker:content-none hover:text-accent [&::-webkit-details-marker]:hidden sm:px-6">
+              <span class="flex items-start justify-between gap-4">
+                <span class="text-left">{item.question}</span>
+                <span
+                  aria-hidden="true"
+                  class="mt-0.5 shrink-0 text-lg leading-none text-primary transition-transform duration-200 group-open:rotate-45"
+                >
+                  +
+                </span>
+              </span>
+            </summary>
+            <div class="px-5 pb-5 sm:px-6">
+              <p class="max-w-2xl text-sm text-muted-foreground sm:text-base">
+                {item.answer}
+              </p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+    {
+      showCta && (
+        <div class="mt-10 flex justify-center">
+          <Button
+            href={ctaHref}
+            openQuote={ctaHref === "/contact"}
+            variant="secondary"
+          >
+            {ctaLabel}
+          </Button>
+        </div>
+      )
+    }
+  </Container>
+</section>

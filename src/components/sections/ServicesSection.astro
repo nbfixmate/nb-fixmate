@@ -1,0 +1,59 @@
+---
+import { getCollection } from "astro:content";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import ServiceCard from "../cards/ServiceCard.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  limit?: number;
+  featuredOnly?: boolean;
+  showViewAll?: boolean;
+}
+
+const {
+  title = "Handyman Services in Adelaide",
+  description = "From general repairs and renovations to painting, carpentry, and property maintenance, NB Fixmate supports homes, rentals, and commercial properties across Adelaide and surrounding areas.",
+  limit,
+  featuredOnly = false,
+  showViewAll = false,
+} = Astro.props;
+
+const services = (await getCollection("services", ({ data }) => data.published))
+  .filter((service) => !featuredOnly || service.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+const visibleServices = limit ? services.slice(0, limit) : services;
+---
+
+<section class="py-16 sm:py-24">
+  <Container>
+    <div
+      class="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-end sm:justify-between sm:gap-8 sm:text-left"
+    >
+      <SectionHeading
+        eyebrow="Our services"
+        title={title}
+        description={description}
+        class="mx-auto sm:mx-0"
+      />
+      {
+        showViewAll && (
+          <div class="shrink-0">
+            <Button href="/services" variant="secondary">
+              View all services
+            </Button>
+          </div>
+        )
+      }
+    </div>
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        visibleServices.map((service) => (
+          <ServiceCard {...service.data} />
+        ))
+      }
+    </div>
+  </Container>
+</section>

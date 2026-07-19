@@ -1,0 +1,26 @@
+---
+import ContactDetailsSection from "../components/sections/ContactDetailsSection.astro";
+import ContactFormSection from "../components/sections/ContactFormSection.astro";
+import PageBannerSection from "../components/sections/PageBannerSection.astro";
+import { images } from "../config/images";
+import { site } from "../config/site";
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout
+  title="Contact Us"
+  description="Contact NB Fixmate for a free Adelaide handyman quote. Call, email, or use the form for repairs, renovations, and property maintenance across Adelaide."
+  canonical="/contact"
+  image={site.defaultOpenGraphImage}
+>
+  <PageBannerSection
+    eyebrow="Contact NB Fixmate"
+    title="Get in Touch for Handyman Help in Adelaide"
+    description="Call, email, or complete the form below. Share your suburb and the work you need done, and NB Fixmate will follow up."
+    imageSrc={images.contactPage.banner.src}
+    imageAlt={images.contactPage.banner.alt}
+  />
+
+  <ContactDetailsSection />
+  <ContactFormSection />
+</MainLayout>

@@ -1,0 +1,57 @@
+---
+import { navigationItems } from "../../config/navigation";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+import MobileNavigation from "./MobileNavigation.astro";
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+---
+
+<header class="sticky top-0 z-50 border-b border-border bg-white">
+  <Container>
+    <div class="relative flex min-h-16 items-center justify-between gap-3 py-2 sm:min-h-20 sm:gap-4 sm:py-3">
+      <a href="/" class="shrink-0" aria-label="NB Fixmate home">
+        <img
+          src="/brand/nb-fixmate-logo.png"
+          alt="NB Fixmate"
+          width="1000"
+          height="750"
+          class="h-12 w-auto object-contain sm:h-16 lg:h-[4.5rem]"
+        />
+      </a>
+
+      <div class="ml-auto flex items-center gap-6 lg:gap-8">
+        <nav class="hidden md:block" aria-label="Primary navigation">
+          <ul class="flex items-center gap-6 lg:gap-8">
+            {
+              navigationItems.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class:list={[
+                      "font-heading text-lg font-bold tracking-tight uppercase transition-colors duration-200 hover:text-primary",
+                      currentPath === item.href ? "text-primary" : "text-accent",
+                    ]}
+                    aria-current={currentPath === item.href ? "page" : undefined}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+
+        <div class="hidden md:block">
+          <Button href="/contact" openQuote>Request a free quote</Button>
+        </div>
+
+        <MobileNavigation currentPath={currentPath} />
+      </div>
+    </div>
+  </Container>
+</header>

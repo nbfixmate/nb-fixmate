@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import Container from "../ui/Container.astro";
+import EmptyState from "../ui/EmptyState.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+
+const testimonials = await getCollection(
+  "testimonials",
+  ({ data }) => data.published,
+);
+---
+
+<section class="py-16 sm:py-24">
+  <Container>
+    <SectionHeading
+      eyebrow="Customer feedback"
+      title="What customers say"
+      description="Feedback is shared only once verified reviews are available."
+      alignment="center"
+    />
+    {
+      testimonials.length === 0 ? (
+        <EmptyState
+          class="mt-10"
+          title="Verified feedback, shared when ready"
+          description="Customer feedback will be added as verified reviews become available."
+        />
+      ) : (
+        <div class="mt-10 grid gap-5 md:grid-cols-2">
+          {
+            testimonials.map((testimonial) => (
+              <figure class="rounded-sm border border-border bg-white p-6">
+                <blockquote class="text-muted-foreground">“{testimonial.data.quote}”</blockquote>
+                <figcaption class="mt-4 font-heading text-sm font-semibold">
+                  {testimonial.data.customerName}
+                </figcaption>
+              </figure>
+            ))
+          }
+        </div>
+      )
+    }
+  </Container>
+</section>

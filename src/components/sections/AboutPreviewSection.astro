@@ -1,0 +1,107 @@
+---
+import { images } from "../../config/images";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+
+type ImagePosition = "left" | "right";
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  body?: string;
+  trustPoints?: string[];
+  ctaHref?: string;
+  ctaLabel?: string;
+  showCta?: boolean;
+  surface?: boolean;
+  imageSrc?: string;
+  imageAlt?: string;
+  imagePosition?: ImagePosition;
+}
+
+const {
+  eyebrow = "About NB Fixmate",
+  title = "Adelaide Handyman & Property Maintenance You Can Rely On",
+  description = "NB Fixmate provides fully insured handyman services, home repairs, renovations, and property maintenance across Adelaide and surrounding areas.",
+  body = "From general repairs, painting, carpentry, tiling, and plastering to rental and commercial property maintenance, we help homeowners, landlords, property managers, and businesses keep properties in great condition.",
+  trustPoints = [
+    "Fully insured handyman and property maintenance services",
+    "Support for homeowners, landlords, property managers, and businesses",
+    "Serving Adelaide and surrounding areas across South Australia",
+  ],
+  ctaHref = "/about",
+  ctaLabel = "Learn about us",
+  showCta = true,
+  surface = false,
+  imageSrc = images.about.preview,
+  imageAlt = images.about.alt,
+  imagePosition = "left",
+} = Astro.props;
+
+const isImageRight = imagePosition === "right";
+---
+
+<section class:list={[surface ? "bg-surface" : "bg-white", "py-16 sm:py-24"]}>
+  <Container>
+    <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+      <img
+        src={imageSrc}
+        alt={imageAlt}
+        width="1400"
+        height="933"
+        class:list={[
+          "aspect-[16/10] w-full rounded-[2px] border border-border object-cover sm:aspect-[4/3] lg:aspect-[4/5] lg:min-h-[36rem]",
+          isImageRight && "lg:order-2",
+        ]}
+        loading="lazy"
+      />
+      <div
+        class:list={[
+          "flex flex-col items-center text-center lg:items-start lg:text-left",
+          isImageRight && "lg:order-1",
+        ]}
+      >
+        <SectionHeading
+          eyebrow={eyebrow}
+          title={title}
+          description={description}
+          class="mx-auto lg:mx-0"
+        />
+        <p class="mt-5 text-muted-foreground">
+          {body}
+        </p>
+        <ul
+          class="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-foreground sm:text-base lg:flex-col lg:items-start lg:justify-start lg:gap-y-3"
+        >
+          {
+            trustPoints.map((point) => (
+              <li class="inline-flex items-center gap-2">
+                <span
+                  class="font-heading shrink-0 text-base font-semibold leading-none text-primary sm:text-lg"
+                  aria-hidden="true"
+                >
+                  ✓
+                </span>
+                <span>{point}</span>
+              </li>
+            ))
+          }
+        </ul>
+        {
+          showCta && (
+            <Button
+              href={ctaHref}
+              openQuote={ctaHref === "/contact"}
+              variant="secondary"
+              class="mt-8"
+            >
+              {ctaLabel}
+            </Button>
+          )
+        }
+      </div>
+    </div>
+  </Container>
+</section>

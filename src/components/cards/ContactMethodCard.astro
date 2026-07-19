@@ -1,0 +1,75 @@
+---
+import { Mail, MapPin, MessageCircle, Phone } from "@lucide/astro";
+import { business } from "../../config/business";
+import IconBox from "../ui/IconBox.astro";
+
+type ContactMethod = "phone" | "email" | "whatsapp" | "area";
+
+interface Props {
+  method: ContactMethod;
+}
+
+const { method } = Astro.props;
+
+const methods = {
+  phone: {
+    label: "Phone",
+    value: business.phone.display,
+    href: business.phone.telUrl,
+    Icon: Phone,
+  },
+  email: {
+    label: "Email",
+    value: business.email.current,
+    href: `mailto:${business.email.current}`,
+    Icon: Mail,
+  },
+  whatsapp: {
+    label: "WhatsApp",
+    value: "Chat with NB Fixmate",
+    href: business.whatsapp.url,
+    Icon: MessageCircle,
+  },
+  area: {
+    label: "Service area",
+    value: business.address.publicLocation,
+    href: undefined,
+    Icon: MapPin,
+  },
+} satisfies Record<
+  ContactMethod,
+  { label: string; value: string; href?: string; Icon: typeof Phone }
+>;
+
+const contactMethod = methods[method];
+const Icon = contactMethod.Icon;
+---
+
+<article
+  class="flex h-full flex-col items-center rounded-[2px] border border-border bg-white p-5 text-center transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-sm"
+>
+  <IconBox>
+    <Icon class="size-6" aria-hidden="true" />
+  </IconBox>
+  <div class="mt-4 min-w-0">
+    <p
+      class="font-heading text-xs font-semibold tracking-tight text-muted-foreground uppercase"
+    >
+      {contactMethod.label}
+    </p>
+    {
+      contactMethod.href ? (
+        <a
+          href={contactMethod.href}
+          class="mt-2 block break-words font-semibold text-accent transition-colors duration-200 hover:text-primary"
+          target={method === "whatsapp" ? "_blank" : undefined}
+          rel={method === "whatsapp" ? "noopener noreferrer" : undefined}
+        >
+          {contactMethod.value}
+        </a>
+      ) : (
+        <p class="mt-2 font-semibold text-accent">{contactMethod.value}</p>
+      )
+    }
+  </div>
+</article>

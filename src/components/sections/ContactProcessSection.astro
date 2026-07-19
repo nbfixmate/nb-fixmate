@@ -1,0 +1,39 @@
+---
+import HowItWorksSection from "./HowItWorksSection.astro";
+
+interface Props {
+  surface?: boolean;
+}
+
+const { surface = false } = Astro.props;
+---
+
+<HowItWorksSection
+  eyebrow="What happens next"
+  title="What Happens After You Contact NB Fixmate"
+  description="A simple process from your first enquiry through to confirming the next step for handyman and property maintenance work in Adelaide."
+  surface={surface}
+  showCta={false}
+  steps={[
+    {
+      title: "Send your enquiry",
+      description:
+        "Share the service, your suburb, and a short description by form, phone, email, or WhatsApp.",
+    },
+    {
+      title: "We review the details",
+      description:
+        "We look at the work type, location, and notes so we understand what your property needs.",
+    },
+    {
+      title: "We prepare your free quote",
+      description:
+        "Once the details are clear, NB Fixmate prepares a free quote for the job.",
+    },
+    {
+      title: "Confirm next steps",
+      description:
+        "We discuss the work with you and move ahead when you are ready to book.",
+    },
+  ]}
+/>

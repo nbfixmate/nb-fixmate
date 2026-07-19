@@ -1,0 +1,275 @@
+---
+import Button from "../ui/Button.astro";
+import FormField from "./FormField.astro";
+import FormSelect from "./FormSelect.astro";
+import FormTextarea from "./FormTextarea.astro";
+
+interface ServiceOption {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  serviceOptions: ServiceOption[];
+  selectedService?: string;
+  idPrefix?: string;
+  formId?: string;
+  submitLabel?: string;
+  bordered?: boolean;
+  compact?: boolean;
+  showSubmit?: boolean;
+}
+
+const {
+  serviceOptions,
+  selectedService = "",
+  idPrefix = "quote",
+  formId,
+  submitLabel = "Submit details",
+  bordered = true,
+  compact = false,
+  showSubmit = true,
+} = Astro.props;
+
+const inputClasses = [
+  "w-full rounded-[2px] border border-border bg-white px-3 text-foreground transition-colors duration-200 placeholder:text-muted-foreground focus:border-primary focus:outline-none",
+  compact ? "min-h-11" : "min-h-12",
+].join(" ");
+
+const fieldId = (name: string) => `${idPrefix}-${name}`;
+---
+
+<form
+  id={formId}
+  data-quote-form
+  class:list={[
+    bordered && "rounded-[2px] border border-border bg-white p-5 shadow-sm sm:p-7",
+  ]}
+>
+  <div class="hidden" aria-hidden="true">
+    <label for={fieldId("website")}>Website</label>
+    <input
+      id={fieldId("website")}
+      name="website"
+      type="text"
+      tabindex="-1"
+      autocomplete="off"
+    />
+  </div>
+
+  <div class:list={["grid sm:grid-cols-2", compact ? "gap-4" : "gap-5"]}>
+    <FormField id={fieldId("full-name")} label="Full Name" required>
+      <input
+        id={fieldId("full-name")}
+        name="fullName"
+        type="text"
+        autocomplete="name"
+        required
+        class={inputClasses}
+      />
+    </FormField>
+    <FormField id={fieldId("phone")} label="Phone Number" required>
+      <input
+        id={fieldId("phone")}
+        name="phone"
+        type="tel"
+        autocomplete="tel"
+        required
+        class={inputClasses}
+      />
+    </FormField>
+    <FormField id={fieldId("email")} label="Email Address" required>
+      <input
+        id={fieldId("email")}
+        name="email"
+        type="email"
+        autocomplete="email"
+        required
+        class={inputClasses}
+      />
+    </FormField>
+    <FormField id={fieldId("service")} label="Service Required" required>
+      <FormSelect
+        id={fieldId("service")}
+        name="service"
+        options={serviceOptions}
+        value={selectedService}
+        required
+      />
+    </FormField>
+    <FormField id={fieldId("suburb")} label="Suburb" required>
+      <input
+        id={fieldId("suburb")}
+        name="suburb"
+        type="text"
+        autocomplete="address-level2"
+        required
+        class={inputClasses}
+      />
+    </FormField>
+    <FormField id={fieldId("date")} label="Preferred Date">
+      <input
+        id={fieldId("date")}
+        name="preferredDate"
+        type="date"
+        class={inputClasses}
+      />
+    </FormField>
+  </div>
+  <FormField
+    id={fieldId("message")}
+    label="Message"
+    class={compact ? "mt-4" : "mt-5"}
+  >
+    <FormTextarea
+      id={fieldId("message")}
+      name="message"
+      rows={compact ? 3 : 5}
+      placeholder="Tell us a little about the work you need done."
+    />
+  </FormField>
+  <p
+    data-quote-form-message
+    class:list={[
+      "hidden rounded-sm border p-4 text-sm",
+      compact ? "mt-4" : "mt-5",
+    ]}
+    role="status"
+    aria-live="polite"
+  ></p>
+  {
+    showSubmit && (
+      <Button type="submit" class="mt-6 w-full">
+        {submitLabel}
+      </Button>
+    )
+  }
+</form>
+
+<script>
+  function getSubmitButtons(form: HTMLFormElement) {
+    const buttons = [
+      ...form.querySelectorAll<HTMLButtonElement>('button[type="submit"]'),
+    ];
+
+    if (form.id) {
+      buttons.push(
+        ...document.querySelectorAll<HTMLButtonElement>(
+          `button[type="submit"][form="${form.id}"]`,
+        ),
+      );
+    }
+
+    return buttons;
+  }
+
+  function setSubmitting(form: HTMLFormElement, isSubmitting: boolean) {
+    getSubmitButtons(form).forEach((button) => {
+      button.disabled = isSubmitting;
+      button.setAttribute("aria-busy", String(isSubmitting));
+      if (!button.dataset.defaultLabel) {
+        button.dataset.defaultLabel = button.textContent?.trim() ?? "Submit details";
+      }
+      button.textContent = isSubmitting
+        ? "Sending..."
+        : button.dataset.defaultLabel;
+    });
+  }
+
+  function showMessage(
+    message: HTMLElement,
+    text: string,
+    tone: "success" | "error",
+  ) {
+    message.textContent = text;
+    message.classList.remove("hidden");
+    message.classList.toggle("border-primary", tone === "success");
+    message.classList.toggle("bg-primary-light", tone === "success");
+    message.classList.toggle("text-foreground", tone === "success");
+    message.classList.toggle("border-error", tone === "error");
+    message.classList.toggle("bg-white", tone === "error");
+    message.classList.toggle("text-error", tone === "error");
+  }
+
+  document.querySelectorAll<HTMLFormElement>("[data-quote-form]").forEach((form) => {
+    const serviceSelect = form.querySelector<HTMLSelectElement>('select[name="service"]');
+    const requestedService = new URLSearchParams(window.location.search).get("service");
+
+    if (
+      serviceSelect &&
+      requestedService &&
+      [...serviceSelect.options].some((option) => option.value === requestedService)
+    ) {
+      serviceSelect.value = requestedService;
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const message = form.querySelector<HTMLElement>("[data-quote-form-message]");
+      if (!message) return;
+
+      const formData = new FormData(form);
+      const payload = {
+        fullName: String(formData.get("fullName") ?? ""),
+        phone: String(formData.get("phone") ?? ""),
+        email: String(formData.get("email") ?? ""),
+        service: String(formData.get("service") ?? ""),
+        suburb: String(formData.get("suburb") ?? ""),
+        preferredDate: String(formData.get("preferredDate") ?? ""),
+        message: String(formData.get("message") ?? ""),
+        website: String(formData.get("website") ?? ""),
+      };
+
+      setSubmitting(form, true);
+
+      try {
+        const response = await fetch("/api/quote", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const result = (await response.json().catch(() => null)) as {
+          ok?: boolean;
+          error?: string;
+        } | null;
+
+        if (!response.ok || !result?.ok) {
+          showMessage(
+            message,
+            result?.error ??
+              "Unable to send your enquiry right now. Please try again shortly.",
+            "error",
+          );
+          return;
+        }
+
+        form.reset();
+        if (serviceSelect && requestedService) {
+          const stillValid = [...serviceSelect.options].some(
+            (option) => option.value === requestedService,
+          );
+          if (stillValid) serviceSelect.value = requestedService;
+        }
+
+        showMessage(
+          message,
+          "Thanks. Your enquiry has been sent. NB Fixmate will follow up once your details are reviewed.",
+          "success",
+        );
+      } catch {
+        showMessage(
+          message,
+          "Unable to send your enquiry right now. Please try again shortly.",
+          "error",
+        );
+      } finally {
+        setSubmitting(form, false);
+      }
+    });
+  });
+</script>

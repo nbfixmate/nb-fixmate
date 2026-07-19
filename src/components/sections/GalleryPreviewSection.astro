@@ -1,0 +1,64 @@
+---
+import { getGalleryItems } from "../../config/gallery";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import GalleryCard from "../cards/GalleryCard.astro";
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  showViewAll?: boolean;
+  surface?: boolean;
+  limit?: number;
+}
+
+const {
+  eyebrow = "Gallery",
+  title = "Handyman & Property Maintenance Work in Adelaide",
+  description = "Examples of the types of handyman, repair, and property maintenance work NB Fixmate can help with across Adelaide. These are stock images, not photos of completed NB Fixmate projects.",
+  showViewAll = true,
+  surface = true,
+  limit,
+} = Astro.props;
+
+const galleryItems = getGalleryItems(limit);
+---
+
+<section class:list={[surface ? "bg-surface" : "bg-white", "py-16 sm:py-24"]}>
+  <Container>
+    <SectionHeading
+      eyebrow={eyebrow}
+      title={title}
+      description={description}
+      alignment="center"
+    />
+    <div
+      class:list={[
+        "mt-10 grid gap-5 sm:grid-cols-2",
+        galleryItems.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-4",
+      ]}
+    >
+      {
+        galleryItems.map((item) => (
+          <GalleryCard
+            title={item.title}
+            alt={item.alt}
+            image={item.image}
+            category={item.category}
+          />
+        ))
+      }
+    </div>
+    {
+      showViewAll && (
+        <div class="mt-10 flex justify-center">
+          <Button href="/gallery" variant="secondary">
+            View gallery
+          </Button>
+        </div>
+      )
+    }
+  </Container>
+</section>

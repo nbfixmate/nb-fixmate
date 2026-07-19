@@ -1,0 +1,40 @@
+---
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  buttonLabel?: string;
+  buttonHref?: string;
+}
+
+const {
+  title = "Book Your Adelaide Handyman Today",
+  description = "NB Fixmate provides fully insured handyman services, home repairs, renovations, and property maintenance for homes, rentals, and commercial properties across Adelaide and surrounding areas. Request a free quote with no obligation.",
+  buttonLabel = "Request a free quote",
+  buttonHref = "/contact",
+} = Astro.props;
+---
+
+<section class="bg-primary py-16 sm:py-20">
+  <Container>
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+        {title}
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-lg font-light text-white/90">
+        {description}
+      </p>
+      <div class="mt-8 flex justify-center">
+        <Button
+          href={buttonHref}
+          openQuote={buttonHref === "/contact"}
+          variant="onBrand"
+        >
+          {buttonLabel}
+        </Button>
+      </div>
+    </div>
+  </Container>
+</section>

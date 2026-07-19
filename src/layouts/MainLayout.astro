@@ -1,0 +1,94 @@
+---
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import JsonLd from "../components/seo/JsonLd.astro";
+import QuoteModal from "../components/ui/QuoteModal.astro";
+import WhatsAppButton from "../components/ui/WhatsAppButton.astro";
+import { site } from "../config/site";
+import { buildLocalBusinessSchema } from "../lib/schema";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = site.defaultDescription,
+  canonical,
+  image = site.defaultOpenGraphImage,
+  noindex = false,
+} = Astro.props;
+
+const pageTitle = title
+  ? site.titleTemplate.replace("%s", title)
+  : site.defaultTitle;
+const canonicalUrl = new URL(canonical ?? Astro.url.pathname, site.baseUrl);
+const imageUrl = new URL(image, site.baseUrl);
+const localBusinessSchema = buildLocalBusinessSchema();
+---
+
+<!doctype html>
+<html lang={site.language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link
+      rel="icon"
+      href="/favicons/favicon-32x32.png"
+      type="image/png"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      href="/favicons/favicon-16x16.png"
+      type="image/png"
+      sizes="16x16"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="/apple-touch-icon.png"
+      sizes="180x180"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#FD7C2F" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={site.locale} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <title>{pageTitle}</title>
+    {!noindex && <JsonLd data={localBusinessSchema} />}
+  </head>
+  <body>
+    <a
+      href="#main-content"
+      class="sr-only fixed top-4 left-4 z-[60] rounded-sm bg-white px-4 py-3 font-heading text-sm font-semibold text-accent focus:not-sr-only"
+    >
+      Skip to content
+    </a>
+    <Header currentPath={Astro.url.pathname} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppButton />
+    <QuoteModal />
+  </body>
+</html>

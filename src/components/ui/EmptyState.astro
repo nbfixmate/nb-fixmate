@@ -1,0 +1,36 @@
+---
+import Button from "./Button.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  actionLabel?: string;
+  actionHref?: string;
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  actionLabel,
+  actionHref,
+  class: className,
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "rounded-sm border border-border bg-surface px-6 py-10 text-center sm:px-10",
+    className,
+  ]}
+>
+  <h3 class="text-xl">{title}</h3>
+  <p class="mx-auto mt-3 max-w-xl text-muted-foreground">{description}</p>
+  {
+    actionLabel && actionHref && (
+      <Button href={actionHref} variant="secondary" class="mt-6">
+        {actionLabel}
+      </Button>
+    )
+  }
+</div>

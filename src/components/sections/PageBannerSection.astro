@@ -1,0 +1,74 @@
+---
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+
+type BannerVariant = "surface" | "accent" | "image";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  variant?: BannerVariant;
+  level?: "h1" | "h2";
+  imageSrc?: string;
+  imageAlt?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  variant = "surface",
+  level = "h1",
+  imageSrc,
+  imageAlt = "",
+} = Astro.props;
+
+const hasImage = Boolean(imageSrc);
+const isAccent = variant === "accent" && !hasImage;
+const theme = hasImage || isAccent ? "dark" : "light";
+---
+
+{
+  hasImage ? (
+    <section class="relative isolate overflow-hidden">
+      <img
+        src={imageSrc}
+        alt={imageAlt}
+        width="1920"
+        height="1280"
+        class="absolute inset-0 size-full object-cover"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/55"
+        aria-hidden="true"
+      />
+      <Container class="relative z-10 py-20 sm:py-28 lg:py-32">
+        <SectionHeading
+          eyebrow={eyebrow}
+          title={title}
+          description={description}
+          theme="dark"
+          level={level}
+          class="max-w-3xl"
+        />
+      </Container>
+    </section>
+  ) : (
+    <section
+      class:list={["py-16 sm:py-20", isAccent ? "bg-accent" : "bg-surface"]}
+    >
+      <Container>
+        <SectionHeading
+          eyebrow={eyebrow}
+          title={title}
+          description={description}
+          theme={theme}
+          level={level}
+        />
+      </Container>
+    </section>
+  )
+}

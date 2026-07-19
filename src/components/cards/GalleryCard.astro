@@ -1,0 +1,56 @@
+---
+import { ImageOff } from "@lucide/astro";
+
+interface Props {
+  image?: string;
+  alt: string;
+  title: string;
+  category?: string;
+  location?: string;
+  state?: "before" | "after";
+}
+
+const { image, alt, title, category, location, state } = Astro.props;
+---
+
+<article
+  class="overflow-hidden rounded-[2px] border border-border bg-white transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-sm"
+>
+  {
+    image ? (
+      <img
+        src={image}
+        alt={alt}
+        class="aspect-[4/3] w-full object-cover"
+        loading="lazy"
+      />
+    ) : (
+      <div
+        class="flex aspect-[4/3] items-center justify-center bg-surface text-muted-foreground"
+        role="img"
+        aria-label={alt}
+      >
+        <ImageOff class="size-8" aria-hidden="true" />
+      </div>
+    )
+  }
+  <div class="p-5">
+    {
+      category && (
+        <p class="font-heading text-sm font-semibold tracking-tight text-primary uppercase">
+          {category}
+        </p>
+      )
+    }
+    <h3 class:list={["text-xl font-bold tracking-tight", category && "mt-2"]}>
+      {title}
+    </h3>
+    {
+      (location || state) && (
+        <p class="mt-2 text-sm text-muted-foreground">
+          {[location, state && `${state} view`].filter(Boolean).join(" · ")}
+        </p>
+      )
+    }
+  </div>
+</article>

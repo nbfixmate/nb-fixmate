@@ -1,0 +1,113 @@
+---
+import { business } from "../../config/business";
+import { images } from "../../config/images";
+import { serviceAreaRegions } from "../../config/service-areas";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  surface?: boolean;
+  showImage?: boolean;
+}
+
+const {
+  eyebrow = "Service areas",
+  title = "Handyman & Property Maintenance Across Adelaide",
+  description = "NB Fixmate provides fully insured handyman and property maintenance services across northern, southern, eastern, western, and inner Adelaide. Below are suburbs we commonly work in. If yours is nearby, request a free quote.",
+  surface = true,
+  showImage = true,
+} = Astro.props;
+
+const trustPoints = [
+  "Coverage across Adelaide and surrounding suburbs",
+  "Homes, rentals, and commercial properties supported",
+  "Fully insured service with free quotes available",
+];
+---
+
+<section class:list={[surface ? "bg-surface" : "bg-white", "py-16 sm:py-24"]}>
+  <Container>
+    {
+      showImage ? (
+        <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div class="flex flex-col items-center text-center lg:items-start lg:text-left">
+            <SectionHeading
+              eyebrow={eyebrow}
+              title={title}
+              description={description}
+              class="mx-auto lg:mx-0"
+            />
+            <ul class="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-foreground sm:text-base lg:flex-col lg:items-start lg:justify-start lg:gap-y-3">
+              {trustPoints.map((point) => (
+                <li class="inline-flex items-center gap-2">
+                  <span
+                    class="font-heading shrink-0 text-base font-semibold leading-none text-primary sm:text-lg"
+                    aria-hidden="true"
+                  >
+                    ✓
+                  </span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <img
+            src={images.localService.preview}
+            alt={images.localService.alt}
+            width="1920"
+            height="1280"
+            class="aspect-[16/10] w-full rounded-[2px] border border-border object-cover sm:aspect-[4/3] lg:aspect-[4/5] lg:min-h-[28rem]"
+            loading="lazy"
+          />
+        </div>
+      ) : (
+        <SectionHeading
+          eyebrow={eyebrow}
+          title={title}
+          description={description}
+          alignment="center"
+        />
+      )
+    }
+
+    <div class:list={["grid gap-5 sm:grid-cols-2 lg:grid-cols-3", showImage ? "mt-12" : "mt-10"]}>
+      {
+        serviceAreaRegions.map((region) => (
+          <article class="rounded-[2px] border border-border bg-white p-5">
+            <h3 class="text-lg font-bold tracking-tight text-accent">
+              {region.title}
+            </h3>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {region.suburbs.map((suburb) => (
+                <li class="rounded-[2px] border border-border bg-surface px-2.5 py-1 text-sm text-muted-foreground">
+                  {suburb}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+      <article
+        class="flex flex-col justify-between rounded-[2px] border border-border bg-white p-5 sm:col-span-2 lg:col-span-1"
+      >
+        <div>
+          <h3 class="text-lg font-bold tracking-tight text-accent">
+            Not sure we cover your suburb?
+          </h3>
+          <p class="mt-3 text-sm text-muted-foreground">
+            Based in {business.address.publicLocation}, NB Fixmate regularly
+            supports jobs across Adelaide and surrounding areas. Share your
+            suburb and the work you need done for a free quote.
+          </p>
+        </div>
+        <Button href="/contact" openQuote class="mt-6 w-full sm:w-auto">
+          Request a free quote
+        </Button>
+      </article>
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,27 @@
+---
+type TrustBadgeTheme = "light" | "dark";
+
+interface Props {
+  label: string;
+  theme?: TrustBadgeTheme;
+  class?: string;
+}
+
+const { label, theme = "light", class: className } = Astro.props;
+
+const themeClasses: Record<TrustBadgeTheme, string> = {
+  light: "border-border bg-white text-accent",
+  dark: "border-white/30 bg-white/10 text-white",
+};
+---
+
+<span
+  class:list={[
+    "inline-flex min-h-10 items-center gap-2 rounded-sm border px-3 font-heading text-xs font-semibold tracking-[0.08em] uppercase",
+    themeClasses[theme],
+    className,
+  ]}
+>
+  <slot name="icon" />
+  {label}
+</span>

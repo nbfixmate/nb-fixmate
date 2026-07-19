@@ -1,0 +1,57 @@
+---
+type Alignment = "left" | "center";
+type Theme = "light" | "dark";
+type HeadingLevel = "h1" | "h2" | "h3";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  alignment?: Alignment;
+  theme?: Theme;
+  level?: HeadingLevel;
+  class?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  alignment = "left",
+  theme = "light",
+  level = "h2",
+  class: className,
+} = Astro.props;
+
+const Heading = level;
+const isCentered = alignment === "center";
+const titleClass = theme === "dark" ? "text-white" : "text-foreground";
+const descriptionClass =
+  theme === "dark" ? "text-white/80" : "text-muted-foreground";
+---
+
+<div
+  class:list={[
+    "max-w-3xl",
+    isCentered && "mx-auto text-center",
+    className,
+  ]}
+>
+  {
+    eyebrow && (
+      <p class="font-heading text-sm font-semibold tracking-tight text-primary uppercase">
+        {eyebrow}
+      </p>
+    )
+  }
+  <Heading class:list={["text-3xl font-bold sm:text-4xl", eyebrow && "mt-3", titleClass]}>
+    {title}
+  </Heading>
+  {
+    description && (
+      <p class:list={["mt-4 max-w-2xl text-base sm:text-lg", isCentered && "mx-auto", descriptionClass]}>
+        {description}
+      </p>
+    )
+  }
+</div>

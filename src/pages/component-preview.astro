@@ -1,0 +1,61 @@
+---
+import { Wrench } from "@lucide/astro";
+import AboutPreviewSection from "../components/sections/AboutPreviewSection.astro";
+import ContactDetailsSection from "../components/sections/ContactDetailsSection.astro";
+import ContactFormSection from "../components/sections/ContactFormSection.astro";
+import GalleryPreviewSection from "../components/sections/GalleryPreviewSection.astro";
+import HeroSection from "../components/sections/HeroSection.astro";
+import PageBannerSection from "../components/sections/PageBannerSection.astro";
+import QuoteCTASection from "../components/sections/QuoteCTASection.astro";
+import ServicesSection from "../components/sections/ServicesSection.astro";
+import TestimonialsSection from "../components/sections/TestimonialsSection.astro";
+import WhyChooseUsSection from "../components/sections/WhyChooseUsSection.astro";
+import IconBox from "../components/ui/IconBox.astro";
+import TrustBadge from "../components/ui/TrustBadge.astro";
+import Container from "../components/ui/Container.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout
+  title="Component Preview"
+  description="Internal NB Fixmate component preview."
+  noindex
+>
+  <Container class="py-8">
+    <div class="rounded-sm border border-primary bg-primary-light p-5">
+      <p class="font-heading text-sm font-semibold tracking-tight text-primary uppercase">
+        Development only
+      </p>
+      <h1 class="mt-2 text-2xl">Internal component preview. Not part of the public site.</h1>
+      <p class="mt-2 text-muted-foreground">
+        Review reusable visual components, fallback states, and responsive spacing here before Phase 3 page assembly.
+      </p>
+      <div class="mt-5 flex flex-wrap items-center gap-3">
+        <IconBox><Wrench class="size-6" aria-hidden="true" /></IconBox>
+        <TrustBadge label="Fully insured" />
+        <TrustBadge label="Dark badge" theme="dark" />
+      </div>
+    </div>
+  </Container>
+
+  <HeroSection headingLevel="h2" />
+  <ServicesSection limit={6} featuredOnly showViewAll />
+  <WhyChooseUsSection />
+  <AboutPreviewSection />
+  <GalleryPreviewSection />
+  <TestimonialsSection />
+  <QuoteCTASection />
+  <ContactDetailsSection />
+  <ContactFormSection />
+  <PageBannerSection
+    eyebrow="Reusable banner"
+    title="A clean page heading"
+    description="Surface and accent variants are ready for future public page composition."
+  />
+  <PageBannerSection
+    eyebrow="Accent variant"
+    title="Clear, practical hierarchy"
+    description="A second banner treatment for future page use."
+    variant="accent"
+  />
+</MainLayout>

@@ -1,0 +1,108 @@
+---
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import FeatureCard from "../cards/FeatureCard.astro";
+
+interface Feature {
+  title: string;
+  description: string;
+  icon: "badge" | "quote" | "wrench" | "building" | "map-pin" | "house";
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  surface?: boolean;
+  compact?: boolean;
+}
+
+const allFeatures: Feature[] = [
+  {
+    title: "Fully Insured Handyman Services",
+    description:
+      "NB Fixmate provides fully insured handyman and property maintenance work across Adelaide.",
+    icon: "badge",
+  },
+  {
+    title: "Free Quotes",
+    description:
+      "Request a free quote for home repairs, renovations, or property maintenance before you book.",
+    icon: "quote",
+  },
+  {
+    title: "Reliable Workmanship",
+    description:
+      "Practical, careful repairs and maintenance for residential and commercial properties.",
+    icon: "wrench",
+  },
+  {
+    title: "Homes, Rentals & Commercial",
+    description:
+      "Support for homeowners, landlords, property managers, and commercial premises.",
+    icon: "building",
+  },
+  {
+    title: "Adelaide & Surrounding Areas",
+    description:
+      "Local handyman and property maintenance services across Adelaide and surrounding suburbs.",
+    icon: "map-pin",
+  },
+  {
+    title: "No Job Too Big or Too Small",
+    description:
+      "From everyday fixes to broader renovations and ongoing property maintenance.",
+    icon: "house",
+  },
+];
+
+const compactFeatures: Feature[] = [
+  {
+    title: "Fully insured service",
+    description:
+      "Peace of mind on every handyman and property maintenance job across Adelaide.",
+    icon: "badge",
+  },
+  {
+    title: "Clear free quotes",
+    description:
+      "Understand the work and cost before you book, with no obligation to proceed.",
+    icon: "quote",
+  },
+  {
+    title: "Work that fits your property",
+    description:
+      "Practical support for homes, rentals, and commercial premises when you need it.",
+    icon: "building",
+  },
+];
+
+const {
+  eyebrow = "Why NB Fixmate",
+  title = "Why Choose NB Fixmate in Adelaide",
+  description = "Fully insured handyman and property maintenance services for homes, rentals, and commercial properties across Adelaide and surrounding areas.",
+  surface = true,
+  compact = false,
+} = Astro.props;
+
+const features = compact ? compactFeatures : allFeatures;
+---
+
+<section class:list={[surface ? "bg-surface" : "bg-white", "py-16 sm:py-24"]}>
+  <Container>
+    <SectionHeading
+      eyebrow={eyebrow}
+      title={title}
+      description={description}
+      alignment="center"
+    />
+    <div
+      class:list={[
+        "mt-10 grid gap-5",
+        compact ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-3",
+      ]}
+    >
+      {features.map((feature) => <FeatureCard {...feature} />)}
+    </div>
+  </Container>
+</section>

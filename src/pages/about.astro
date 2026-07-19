@@ -1,0 +1,105 @@
+---
+import AboutPreviewSection from "../components/sections/AboutPreviewSection.astro";
+import ApproachSection from "../components/sections/ApproachSection.astro";
+import FaqSection from "../components/sections/FaqSection.astro";
+import ImageCTASection from "../components/sections/ImageCTASection.astro";
+import MissionSection from "../components/sections/MissionSection.astro";
+import PageBannerSection from "../components/sections/PageBannerSection.astro";
+import QuoteCTASection from "../components/sections/QuoteCTASection.astro";
+import ServiceAreasSection from "../components/sections/ServiceAreasSection.astro";
+import WhoWeHelpSection from "../components/sections/WhoWeHelpSection.astro";
+import WhyChooseUsSection from "../components/sections/WhyChooseUsSection.astro";
+import { images } from "../config/images";
+import { site } from "../config/site";
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout
+  title="About Us"
+  description="Learn about NB Fixmate and our reliable, fully insured handyman and property maintenance services across Adelaide and surrounding areas."
+  canonical="/about"
+  image={site.defaultOpenGraphImage}
+>
+  <PageBannerSection
+    eyebrow="About NB Fixmate"
+    title="Practical property maintenance support"
+    description="Reliable handyman and property maintenance services for Adelaide and surrounding areas."
+    imageSrc={images.aboutPage.banner.src}
+    imageAlt={images.aboutPage.banner.alt}
+  />
+
+  <AboutPreviewSection
+    eyebrow="Who we are"
+    title="Adelaide Handyman & Property Maintenance You Can Rely On"
+    description="NB Fixmate provides fully insured handyman services, home repairs, renovations, and property maintenance across Adelaide and surrounding areas."
+    body="From general repairs, painting, carpentry, tiling, and plastering to rental and commercial property maintenance, we help homeowners, landlords, property managers, and businesses keep properties in great condition."
+    imageSrc={images.aboutPage.whoWeAre.src}
+    imageAlt={images.aboutPage.whoWeAre.alt}
+    showCta={false}
+  />
+
+  <ApproachSection />
+  <MissionSection />
+
+  <AboutPreviewSection
+    eyebrow="What we do"
+    title="Handyman Services That Cover Everyday Fixes & Bigger Jobs"
+    description="From general home repairs and renovations to painting, carpentry, tiling, and ongoing property maintenance, NB Fixmate supports the practical work Adelaide properties need."
+    body="Whether you need a one-off repair or regular upkeep, we keep the process simple: clear free quotes, fully insured work, and reliable support for residential, rental, and commercial properties."
+    trustPoints={[
+      "Home repairs, renovations, and general handyman services",
+      "Painting, carpentry, tiling, plastering, and maintenance",
+      "Support for homes, rentals, and commercial properties",
+    ]}
+    imageSrc={images.aboutPage.whatWeDo.src}
+    imageAlt={images.aboutPage.whatWeDo.alt}
+    imagePosition="right"
+    ctaHref="/services"
+    ctaLabel="Browse our services"
+    showCta
+    surface
+  />
+
+  <WhoWeHelpSection
+    eyebrow="Who we serve"
+    title="Handyman Support for Homes, Rentals & Businesses"
+    description="Whether you own a home, manage rentals, or maintain a commercial property in Adelaide, NB Fixmate provides practical, fully insured handyman help when you need it."
+    surface={false}
+    showCta
+    ctaLabel="Request a free quote"
+    ctaHref="/contact"
+  />
+  <ServiceAreasSection
+    eyebrow="Where we work"
+    title="Suburbs We Service Around Adelaide"
+    description="Explore example suburbs NB Fixmate commonly services across Adelaide. If your suburb is nearby, contact us for a free handyman or property maintenance quote."
+    surface
+    showImage={false}
+  />
+  <WhyChooseUsSection
+    eyebrow="Why NB Fixmate"
+    title="What Sets NB Fixmate Apart"
+    description="A few reasons Adelaide homeowners, landlords, and businesses choose NB Fixmate for handyman and property maintenance work."
+    surface={false}
+    compact
+  />
+  <ImageCTASection
+    title="Need Handyman Help Across Adelaide?"
+    description="Request a free quote for home repairs, renovations, or property maintenance. NB Fixmate provides fully insured support for homes, rentals, and commercial properties across Adelaide and surrounding areas."
+    imageSrc={images.aboutPage.imageCta.src}
+    imageAlt={images.aboutPage.imageCta.alt}
+  />
+  <FaqSection
+    set="about"
+    eyebrow="FAQs"
+    title="Common Questions About NB Fixmate"
+    description="Straight answers about our insurance, Adelaide service areas, property types, free quotes, and how to get started."
+    surface={false}
+    showCta
+    ctaLabel="Request a free quote"
+    ctaHref="/contact"
+  />
+  <QuoteCTASection
+    imageSrc={images.aboutPage.quoteCta.src}
+  />
+</MainLayout>

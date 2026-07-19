@@ -1,0 +1,178 @@
+---
+import { business } from "../../config/business";
+import { navigationItems } from "../../config/navigation";
+import Container from "../ui/Container.astro";
+import SocialIcon from "../ui/SocialIcon.astro";
+
+const currentYear = new Date().getFullYear();
+
+const socialLinks = [
+  {
+    label: "Instagram",
+    href: business.social.instagramUrl,
+    icon: "instagram" as const,
+  },
+  {
+    label: "Facebook",
+    href: business.social.facebookUrl,
+    icon: "facebook" as const,
+  },
+  {
+    label: "LinkedIn",
+    href: business.social.linkedinUrl,
+    icon: "linkedin" as const,
+  },
+];
+
+const linkClass =
+  "inline-flex size-11 items-center justify-center rounded-[2px] border border-border text-accent transition-colors duration-200 hover:border-primary hover:text-primary";
+const pendingClass =
+  "inline-flex size-11 items-center justify-center rounded-[2px] border border-border text-muted-foreground";
+---
+
+<footer class="bg-white">
+  <Container class="py-12 sm:py-16">
+    <div
+      class="grid gap-10 text-center md:grid-cols-[1.5fr_1fr_1.2fr] md:text-left"
+    >
+      <div class="flex flex-col items-center md:items-start">
+        <a href="/" class="inline-flex" aria-label="NB Fixmate home">
+          <img
+            src="/brand/nb-fixmate-logo.png"
+            alt="NB Fixmate"
+            width="1000"
+            height="750"
+            class="h-20 w-auto object-contain sm:h-24"
+          />
+        </a>
+        <p class="mt-2 font-heading text-sm font-semibold tracking-tight text-accent">
+          {business.tagline}
+        </p>
+        <p class="mt-4 max-w-sm text-sm text-muted-foreground">
+          NB Fixmate provides fully insured handyman and property maintenance
+          services for homes, rentals, and commercial properties across Adelaide
+          and surrounding areas.
+        </p>
+        <ul class="mt-6 flex items-center gap-3">
+          {
+            socialLinks.map(({ label, href, icon }) => (
+              <li>
+                {href ? (
+                  <a
+                    href={href}
+                    class={linkClass}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${business.displayName} on ${label}`}
+                  >
+                    <SocialIcon name={icon} />
+                  </a>
+                ) : (
+                  <span
+                    class={pendingClass}
+                    aria-label={`${label} link coming soon`}
+                    title={`${label} coming soon`}
+                  >
+                    <SocialIcon name={icon} />
+                  </span>
+                )}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h2
+          class="font-heading text-sm font-semibold tracking-tight text-accent uppercase"
+        >
+          Navigation
+        </h2>
+        <ul class="mt-4 space-y-3">
+          {
+            navigationItems.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-sm text-muted-foreground transition-colors duration-200 hover:text-primary"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h2
+          class="font-heading text-sm font-semibold tracking-tight text-accent uppercase"
+        >
+          Contact
+        </h2>
+        <address class="mt-4 space-y-3 text-sm not-italic text-muted-foreground">
+          <p>
+            <span class="block font-heading text-xs font-semibold tracking-tight text-accent uppercase">
+              Phone
+            </span>
+            <a
+              href={business.phone.telUrl}
+              class="mt-1 inline-block transition-colors duration-200 hover:text-primary"
+            >
+              {business.phone.display}
+            </a>
+          </p>
+          <p>
+            <span class="block font-heading text-xs font-semibold tracking-tight text-accent uppercase">
+              Email
+            </span>
+            <a
+              href={`mailto:${business.email.current}`}
+              class="mt-1 inline-block transition-colors duration-200 hover:text-primary"
+            >
+              {business.email.current}
+            </a>
+          </p>
+          <p>
+            <span class="block font-heading text-xs font-semibold tracking-tight text-accent uppercase">
+              Service area
+            </span>
+            <span class="mt-1 inline-block">
+              {business.address.publicLocation}
+            </span>
+          </p>
+          <p>
+            <span class="block font-heading text-xs font-semibold tracking-tight text-accent uppercase">
+              WhatsApp
+            </span>
+            <a
+              href={business.whatsapp.url}
+              class="mt-1 inline-block transition-colors duration-200 hover:text-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Chat with NB Fixmate
+            </a>
+          </p>
+        </address>
+      </div>
+    </div>
+
+    <div
+      class="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 pb-20 text-center text-sm text-muted-foreground sm:flex-row sm:pb-4 sm:text-left"
+    >
+      <p>© {currentYear} {business.displayName}. All rights reserved.</p>
+      <p class="text-xs sm:text-sm">
+        Website developed by{" "}
+        <a
+          href="https://chanmax.io"
+          class="font-medium text-accent transition-colors duration-200 hover:text-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Chanmax
+        </a>
+      </p>
+    </div>
+  </Container>
+</footer>

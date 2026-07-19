@@ -1,0 +1,41 @@
+---
+import AboutPreviewSection from "../components/sections/AboutPreviewSection.astro";
+import BrandCTASection from "../components/sections/BrandCTASection.astro";
+import FaqSection from "../components/sections/FaqSection.astro";
+import GalleryPreviewSection from "../components/sections/GalleryPreviewSection.astro";
+import HeroSection from "../components/sections/HeroSection.astro";
+import HowItWorksSection from "../components/sections/HowItWorksSection.astro";
+import ImageCTASection from "../components/sections/ImageCTASection.astro";
+import QuoteCTASection from "../components/sections/QuoteCTASection.astro";
+import ServiceAreasSection from "../components/sections/ServiceAreasSection.astro";
+import ServicesSection from "../components/sections/ServicesSection.astro";
+import WhoWeHelpSection from "../components/sections/WhoWeHelpSection.astro";
+import WhyChooseUsSection from "../components/sections/WhyChooseUsSection.astro";
+import { site } from "../config/site";
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout
+  description={site.defaultDescription}
+  canonical="/"
+  image={site.defaultOpenGraphImage}
+>
+  <HeroSection />
+  <ServicesSection
+    title="Handyman Services in Adelaide"
+    description="From general repairs and renovations to painting, carpentry, and property maintenance, NB Fixmate supports homes, rentals, and commercial properties across Adelaide and surrounding areas."
+    limit={6}
+    featuredOnly
+    showViewAll
+  />
+  <WhyChooseUsSection />
+  <BrandCTASection />
+  <AboutPreviewSection />
+  <HowItWorksSection />
+  <WhoWeHelpSection surface />
+  <ServiceAreasSection surface={false} />
+  <ImageCTASection />
+  <GalleryPreviewSection limit={4} />
+  <FaqSection set="home" />
+  <QuoteCTASection />
+</MainLayout>

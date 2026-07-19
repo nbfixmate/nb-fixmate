@@ -1,0 +1,143 @@
+---
+import { navigationItems } from "../../config/navigation";
+import Button from "../ui/Button.astro";
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+---
+
+<div class="md:hidden" data-mobile-nav>
+  <button
+    type="button"
+    class="inline-flex min-h-12 min-w-12 items-center justify-center rounded-[2px] border border-border text-accent transition-colors duration-200 hover:border-accent"
+    data-mobile-nav-trigger
+    aria-controls="mobile-navigation"
+    aria-expanded="false"
+    aria-label="Open navigation menu"
+  >
+    <svg
+      data-icon-open
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      class="size-6"
+    >
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </svg>
+    <svg
+      data-icon-close
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      class="hidden size-6"
+    >
+      <path d="M6 6l12 12M18 6l-12 12" />
+    </svg>
+  </button>
+
+  <div
+    class="fixed inset-0 z-40 bg-accent/40 opacity-0 pointer-events-none transition-opacity duration-200"
+    data-mobile-nav-backdrop
+    hidden
+  >
+  </div>
+
+  <nav
+    id="mobile-navigation"
+    class="absolute inset-x-0 top-full z-50 border-b border-border bg-white px-4 py-4 shadow-sm sm:px-6"
+    aria-label="Mobile navigation"
+    data-mobile-nav-menu
+    hidden
+  >
+    <ul class="flex flex-col">
+      {
+        navigationItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="block border-b border-border py-4 font-heading text-lg font-bold tracking-tight text-accent uppercase transition-colors duration-200 hover:text-primary"
+              aria-current={currentPath === item.href ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="pt-4">
+      <Button href="/contact" openQuote class="w-full">Request a free quote</Button>
+    </div>
+  </nav>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-mobile-nav]");
+  const trigger = root?.querySelector<HTMLButtonElement>(
+    "[data-mobile-nav-trigger]",
+  );
+  const menu = root?.querySelector<HTMLElement>("[data-mobile-nav-menu]");
+  const backdrop = root?.querySelector<HTMLElement>(
+    "[data-mobile-nav-backdrop]",
+  );
+  const iconOpen = root?.querySelector<SVGElement>("[data-icon-open]");
+  const iconClose = root?.querySelector<SVGElement>("[data-icon-close]");
+
+  function isOpen() {
+    return trigger?.getAttribute("aria-expanded") === "true";
+  }
+
+  function setOpen(nextOpen: boolean) {
+    if (!trigger || !menu || !backdrop || !iconOpen || !iconClose) return;
+
+    menu.hidden = !nextOpen;
+    backdrop.hidden = !nextOpen;
+    backdrop.classList.toggle("opacity-0", !nextOpen);
+    backdrop.classList.toggle("pointer-events-none", !nextOpen);
+    trigger.setAttribute("aria-expanded", String(nextOpen));
+    trigger.setAttribute(
+      "aria-label",
+      nextOpen ? "Close navigation menu" : "Open navigation menu",
+    );
+    iconOpen.classList.toggle("hidden", nextOpen);
+    iconClose.classList.toggle("hidden", !nextOpen);
+    document.body.classList.toggle("overflow-hidden", nextOpen);
+  }
+
+  function closeMenu() {
+    setOpen(false);
+  }
+
+  function toggleMenu() {
+    setOpen(!isOpen());
+  }
+
+  trigger?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggleMenu();
+  });
+
+  backdrop?.addEventListener("click", closeMenu);
+
+  menu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!isOpen() || !root) return;
+    const target = event.target;
+    if (!(target instanceof Node)) return;
+    if (root.contains(target)) return;
+    closeMenu();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
+  });
+</script>

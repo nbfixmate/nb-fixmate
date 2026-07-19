@@ -1,0 +1,71 @@
+---
+import QuoteForm from "../forms/QuoteForm.astro";
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import {
+  getQuoteServiceOptions,
+  resolveSelectedService,
+} from "../../lib/quote-form";
+
+interface Props {
+  selectedService?: string;
+  surface?: boolean;
+}
+
+const { selectedService, surface = true } = Astro.props;
+
+const serviceOptions = await getQuoteServiceOptions();
+const validSelectedService = resolveSelectedService(
+  serviceOptions,
+  selectedService ?? Astro.url.searchParams.get("service") ?? "",
+);
+
+const trustPoints = [
+  "Free quotes",
+  "Fully insured",
+  "No obligation to book",
+];
+---
+
+<section
+  id="quote-form"
+  class:list={[surface ? "bg-surface" : "bg-white", "py-16 sm:py-24"]}
+>
+  <Container>
+    <div class="mx-auto max-w-2xl">
+      <SectionHeading
+        eyebrow="Contact"
+        title="Send Us Your Job Details"
+        description="Share the service, your Adelaide suburb, and a short description of the work. NB Fixmate will follow up once your enquiry details are reviewed."
+        alignment="center"
+      />
+
+      <ul
+        class="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground"
+      >
+        {
+          trustPoints.map((point) => (
+            <li class="inline-flex items-center gap-2">
+              <span
+                class="font-heading text-base font-semibold leading-none text-primary"
+                aria-hidden="true"
+              >
+                ✓
+              </span>
+              <span>{point}</span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-10">
+        <QuoteForm
+          serviceOptions={serviceOptions}
+          selectedService={validSelectedService}
+          idPrefix="contact"
+          submitLabel="Submit details"
+        />
+      </div>
+    </div>
+  </Container>
+</section>

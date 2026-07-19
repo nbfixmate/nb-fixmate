@@ -1,0 +1,119 @@
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/montserrat";
+@import "tailwindcss";
+
+:root {
+  --brand-primary: #fd7c2f;
+  --brand-primary-hover: #ea6b1c;
+  --brand-primary-light: #fff4ec;
+  --brand-accent: #334155;
+  --brand-foreground: #111111;
+  --brand-muted-foreground: #525252;
+  --brand-background: #ffffff;
+  --brand-surface: #f8f9fa;
+  --brand-border: #e5e7eb;
+  --brand-success: #22c55e;
+  --brand-error: #dc2626;
+}
+
+@theme inline {
+  --color-primary: var(--brand-primary);
+  --color-primary-hover: var(--brand-primary-hover);
+  --color-primary-light: var(--brand-primary-light);
+  --color-accent: var(--brand-accent);
+  --color-foreground: var(--brand-foreground);
+  --color-muted-foreground: var(--brand-muted-foreground);
+  --color-background: var(--brand-background);
+  --color-surface: var(--brand-surface);
+  --color-border: var(--brand-border);
+  --color-success: var(--brand-success);
+  --color-error: var(--brand-error);
+  --font-sans: "Inter Variable", sans-serif;
+  --font-heading: "Montserrat Variable", sans-serif;
+}
+
+@layer base {
+  html {
+    background: var(--brand-background);
+    color: var(--brand-foreground);
+    font-family: "Inter Variable", sans-serif;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    min-width: 20rem;
+    background: var(--brand-background);
+    color: var(--brand-foreground);
+    font-family: inherit;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Montserrat Variable", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+  }
+
+  ::selection {
+    background: var(--brand-primary);
+    color: var(--brand-foreground);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--brand-primary);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility fade-lift {
+  animation: fade-lift 200ms ease-out both;
+}
+
+@keyframes fade-lift {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

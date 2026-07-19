@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /component-preview
+
+Sitemap: https://nbfixmate.com.au/sitemap-index.xml

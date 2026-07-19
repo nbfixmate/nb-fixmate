@@ -1,0 +1,97 @@
+---
+import AboutPreviewSection from "../components/sections/AboutPreviewSection.astro";
+import CategorizedServicesSection from "../components/sections/CategorizedServicesSection.astro";
+import FaqSection from "../components/sections/FaqSection.astro";
+import HowItWorksSection from "../components/sections/HowItWorksSection.astro";
+import ImageCTASection from "../components/sections/ImageCTASection.astro";
+import PageBannerSection from "../components/sections/PageBannerSection.astro";
+import QuoteCTASection from "../components/sections/QuoteCTASection.astro";
+import ServiceAreasSection from "../components/sections/ServiceAreasSection.astro";
+import ServiceCategoriesSection from "../components/sections/ServiceCategoriesSection.astro";
+import WhyChooseUsSection from "../components/sections/WhyChooseUsSection.astro";
+import { images } from "../config/images";
+import { site } from "../config/site";
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout
+  title="Handyman Services Adelaide"
+  description="Adelaide handyman and property maintenance services from NB Fixmate. Repairs, renovations, painting, carpentry, tiling, and upkeep for homes, rentals, and commercial properties. Free quotes."
+  canonical="/services"
+  image={site.defaultOpenGraphImage}
+>
+  <PageBannerSection
+    eyebrow="Our services"
+    title="Handyman & Property Maintenance Services in Adelaide"
+    description="Practical repairs, renovations, and ongoing maintenance for homes, rental properties, and commercial spaces across Adelaide and surrounding areas."
+    imageSrc={images.servicesPage.banner.src}
+    imageAlt={images.servicesPage.banner.alt}
+  />
+
+  <AboutPreviewSection
+    eyebrow="What we offer"
+    title="Browse the Handyman Work NB Fixmate Handles"
+    description="Find the service that matches your job, from everyday repairs to renovations and ongoing property maintenance across Adelaide."
+    body="Use the categories below to jump to the right type of work, then request a free quote with your suburb and a short description of what needs doing."
+    trustPoints={[
+      "Repairs, renovations, painting, carpentry, and tiling",
+      "Outdoor, rental, and commercial property maintenance",
+      "Fully insured work with free quotes across Adelaide",
+    ]}
+    imageSrc={images.servicesPage.intro.src}
+    imageAlt={images.servicesPage.intro.alt}
+    imagePosition="left"
+    showCta={false}
+  />
+
+  <ServiceCategoriesSection surface />
+  <CategorizedServicesSection surface={false} />
+
+  <HowItWorksSection
+    eyebrow="How it works"
+    title="How to Get a Free Quote for Handyman Services"
+    description="Share the service, your Adelaide suburb, and a short description so NB Fixmate can prepare a free quote."
+    surface
+  />
+
+  <WhyChooseUsSection
+    eyebrow="Why NB Fixmate"
+    title="Why Choose NB Fixmate for Your Job"
+    description="Fully insured handyman and property maintenance support with clear free quotes for Adelaide homes, rentals, and commercial properties."
+    surface={false}
+    compact
+  />
+
+  <ServiceAreasSection
+    eyebrow="Where we work"
+    title="Handyman Services Across Adelaide Suburbs"
+    description="NB Fixmate commonly supports jobs across northern, southern, eastern, western, and inner Adelaide. If your suburb is nearby, request a free quote."
+    surface
+    showImage={false}
+  />
+
+  <ImageCTASection
+    title="Found the Service You Need?"
+    description="Request a free quote with your Adelaide suburb and a short description of the work. Fully insured handyman and property maintenance support, with no obligation to book."
+    imageSrc={images.servicesPage.imageCta.src}
+    imageAlt={images.servicesPage.imageCta.alt}
+  />
+
+  <FaqSection
+    set="services"
+    eyebrow="FAQs"
+    title="Handyman Services FAQs for Adelaide"
+    description="Answers about free quotes, insurance, job sizes, property types, and Adelaide service areas."
+    surface={false}
+    showCta
+    ctaLabel="Request a free quote"
+    ctaHref="/contact"
+  />
+
+  <QuoteCTASection
+    title="Need a Handyman or Property Maintenance Quote?"
+    description="Request a free quote for repairs, renovations, or ongoing property maintenance across Adelaide. Fully insured support for homes, rentals, and commercial properties."
+    imageSrc={images.servicesPage.quoteCta.src}
+    surface
+  />
+</MainLayout>

@@ -1,0 +1,80 @@
+---
+import AboutPreviewSection from "../components/sections/AboutPreviewSection.astro";
+import FaqSection from "../components/sections/FaqSection.astro";
+import GalleryFutureSection from "../components/sections/GalleryFutureSection.astro";
+import GalleryPreviewSection from "../components/sections/GalleryPreviewSection.astro";
+import ImageCTASection from "../components/sections/ImageCTASection.astro";
+import PageBannerSection from "../components/sections/PageBannerSection.astro";
+import QuoteCTASection from "../components/sections/QuoteCTASection.astro";
+import { images } from "../config/images";
+import { site } from "../config/site";
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout
+  title="Gallery"
+  description="Browse examples of handyman and property maintenance work NB Fixmate supports across Adelaide, including repairs, painting, carpentry, tiling, and renovations. Authentic project photos coming soon."
+  canonical="/gallery"
+  image={site.defaultOpenGraphImage}
+>
+  <PageBannerSection
+    eyebrow="Gallery"
+    title="Handyman & Property Maintenance Work in Adelaide"
+    description="A visual look at the practical repair, renovation, and maintenance work NB Fixmate supports across Adelaide and surrounding areas."
+    imageSrc={images.galleryPage.banner.src}
+    imageAlt={images.galleryPage.banner.alt}
+  />
+
+  <AboutPreviewSection
+    eyebrow="What you are viewing"
+    title="Examples of the Work We Support"
+    description="This gallery uses stock images to show the types of handyman and property maintenance services NB Fixmate can help with across Adelaide."
+    body="These photos are not completed NB Fixmate projects. Authentic project photography will replace them as real job photos become available."
+    trustPoints={[
+      "Stock examples of repairs, painting, carpentry, and tiling",
+      "Honest labelling until real project photos are ready",
+      "Fully insured handyman support across Adelaide",
+    ]}
+    imageSrc={images.galleryPage.intro.src}
+    imageAlt={images.galleryPage.intro.alt}
+    imagePosition="left"
+    ctaHref="/services"
+    ctaLabel="Browse our services"
+    showCta
+  />
+
+  <GalleryPreviewSection
+    eyebrow="Service examples"
+    title="Types of Handyman Work Across Adelaide"
+    description="Browse example imagery by service type. When you see the kind of work you need, request a free quote with your suburb and a short job description."
+    showViewAll={false}
+    surface
+  />
+
+  <GalleryFutureSection surface={false} />
+
+  <ImageCTASection
+    title="Need This Kind of Work Done at Your Property?"
+    description="Request a free quote for handyman repairs, renovations, or property maintenance across Adelaide. Fully insured support for homes, rentals, and commercial properties."
+    imageSrc={images.galleryPage.imageCta.src}
+    imageAlt={images.galleryPage.imageCta.alt}
+  />
+
+  <FaqSection
+    set="gallery"
+    eyebrow="FAQs"
+    title="Gallery & Services FAQs"
+    description="Clear answers about the photos on this page, the services NB Fixmate offers, and how to request a free quote."
+    surface={false}
+    showCta
+    ctaLabel="Request a free quote"
+    ctaHref="/contact"
+  />
+
+  <QuoteCTASection
+    title="Ready for a Free Handyman Quote?"
+    description="Tell NB Fixmate what needs fixing and your Adelaide suburb. Fully insured handyman and property maintenance support, with no obligation to book."
+    imageSrc={images.galleryPage.quoteCta.src}
+    surface
+  />
+</MainLayout>
