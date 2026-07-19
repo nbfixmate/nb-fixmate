@@ -40,7 +40,7 @@ const cardClass = surface
       description={description}
       alignment="center"
     />
-    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
       {
         audiences.map((audience, index) => {
           const Icon = icons[index] ?? House;

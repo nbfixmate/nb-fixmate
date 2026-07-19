@@ -245,29 +245,17 @@ const fieldId = (name: string) => `${idPrefix}-${name}`;
               "Unable to send your enquiry right now. Please try again shortly.",
             "error",
           );
+          setSubmitting(form, false);
           return;
         }
 
-        form.reset();
-        if (serviceSelect && requestedService) {
-          const stillValid = [...serviceSelect.options].some(
-            (option) => option.value === requestedService,
-          );
-          if (stillValid) serviceSelect.value = requestedService;
-        }
-
-        showMessage(
-          message,
-          "Thanks. Your enquiry has been sent. NB Fixmate will follow up once your details are reviewed.",
-          "success",
-        );
+        window.location.assign("/thank-you");
       } catch {
         showMessage(
           message,
           "Unable to send your enquiry right now. Please try again shortly.",
           "error",
         );
-      } finally {
         setSubmitting(form, false);
       }
     });

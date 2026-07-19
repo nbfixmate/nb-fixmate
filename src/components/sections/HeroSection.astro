@@ -22,7 +22,7 @@ const googleHref =
   `https://www.google.com/search?q=${encodeURIComponent(`${business.name} Adelaide`)}`;
 ---
 
-<section class="relative isolate overflow-hidden">
+<section data-reveal-static class="relative isolate overflow-hidden">
   <img
     src={images.hero.adelaideCity}
     alt=""
@@ -40,7 +40,7 @@ const googleHref =
   </div>
 
   <Container class="relative z-10 py-12 sm:py-24 lg:py-32">
-    <div class="fade-lift mx-auto max-w-4xl text-center">
+    <div data-reveal class="mx-auto max-w-4xl text-center">
       <a
         href={googleHref}
         class="mb-3 inline-flex max-w-full flex-wrap items-center justify-center gap-1.5 py-1 font-heading text-sm font-semibold tracking-tight text-white sm:mb-4 sm:gap-2.5 sm:text-lg"

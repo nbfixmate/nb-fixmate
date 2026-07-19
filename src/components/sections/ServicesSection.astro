@@ -48,7 +48,7 @@ const visibleServices = limit ? services.slice(0, limit) : services;
         )
       }
     </div>
-    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-reveal-stagger>
       {
         visibleServices.map((service) => (
           <ServiceCard {...service.data} />

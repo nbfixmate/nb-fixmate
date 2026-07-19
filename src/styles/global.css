@@ -103,7 +103,7 @@
 }
 
 @utility fade-lift {
-  animation: fade-lift 200ms ease-out both;
+  animation: fade-lift 280ms ease-out both;
 }
 
 @keyframes fade-lift {
@@ -115,5 +115,47 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.reveal-enabled #main-content > section:not([data-reveal-static]):not(.is-revealed),
+  html.reveal-enabled [data-reveal]:not(.is-revealed) {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  html.reveal-enabled #main-content > section:not([data-reveal-static]).is-revealed,
+  html.reveal-enabled [data-reveal].is-revealed {
+    animation: fade-lift 280ms ease-out both;
+  }
+
+  html.reveal-enabled [data-reveal-stagger] > :not(.is-revealed) {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  html.reveal-enabled [data-reveal-stagger] > .is-revealed {
+    animation: fade-lift 280ms ease-out both;
+  }
+
+  html.reveal-enabled [data-reveal-stagger] > .is-revealed:nth-child(2) {
+    animation-delay: 50ms;
+  }
+
+  html.reveal-enabled [data-reveal-stagger] > .is-revealed:nth-child(3) {
+    animation-delay: 100ms;
+  }
+
+  html.reveal-enabled [data-reveal-stagger] > .is-revealed:nth-child(4) {
+    animation-delay: 150ms;
+  }
+
+  html.reveal-enabled [data-reveal-stagger] > .is-revealed:nth-child(5) {
+    animation-delay: 200ms;
+  }
+
+  html.reveal-enabled [data-reveal-stagger] > .is-revealed:nth-child(6) {
+    animation-delay: 250ms;
   }
 }

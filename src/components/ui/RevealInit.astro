@@ -1,0 +1,44 @@
+<script>
+  function revealElement(element: Element) {
+    element.classList.add("is-revealed");
+  }
+
+  function initReveal() {
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const targets = [
+      ...document.querySelectorAll(
+        "#main-content > section:not([data-reveal-static]):not(.is-revealed)",
+      ),
+      ...document.querySelectorAll("[data-reveal]:not(.is-revealed)"),
+      ...document.querySelectorAll("[data-reveal-stagger] > :not(.is-revealed)"),
+    ];
+
+    if (targets.length === 0) return;
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      targets.forEach(revealElement);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          revealElement(entry.target);
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        rootMargin: "0px 0px -6% 0px",
+        threshold: 0.08,
+      },
+    );
+
+    targets.forEach((target) => observer.observe(target));
+  }
+
+  initReveal();
+</script>

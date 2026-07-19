@@ -1,0 +1,74 @@
+---
+import { business } from "../config/business";
+import { site } from "../config/site";
+import Button from "../components/ui/Button.astro";
+import Container from "../components/ui/Container.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout
+  title="Thank You"
+  description="Thanks for contacting NB Fixmate. Your enquiry has been received and we will follow up once your details are reviewed."
+  canonical="/thank-you"
+  image={site.defaultOpenGraphImage}
+  noindex
+>
+  <section data-reveal-static class="bg-surface py-20 sm:py-28">
+    <Container>
+      <div class="mx-auto max-w-2xl text-center">
+        <p
+          class="font-heading text-sm font-semibold tracking-tight text-primary uppercase"
+        >
+          Enquiry received
+        </p>
+        <h1
+          class="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl"
+        >
+          Thank You
+        </h1>
+        <p class="mx-auto mt-5 max-w-xl text-lg font-light text-muted-foreground">
+          Your enquiry has been sent to NB Fixmate. We will review your details
+          and follow up shortly. There is no obligation to book.
+        </p>
+        <ul
+          class="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground"
+        >
+          <li class="inline-flex items-center gap-2">
+            <span
+              class="font-heading text-base font-semibold leading-none text-primary"
+              aria-hidden="true">✓</span
+            >
+            <span>Free quotes</span>
+          </li>
+          <li class="inline-flex items-center gap-2">
+            <span
+              class="font-heading text-base font-semibold leading-none text-primary"
+              aria-hidden="true">✓</span
+            >
+            <span>Fully insured</span>
+          </li>
+          <li class="inline-flex items-center gap-2">
+            <span
+              class="font-heading text-base font-semibold leading-none text-primary"
+              aria-hidden="true">✓</span
+            >
+            <span>Adelaide & surrounding areas</span>
+          </li>
+        </ul>
+        <div
+          class="mx-auto mt-8 flex w-full max-w-sm flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:justify-center"
+        >
+          <Button href="/" class="w-full sm:w-auto">Back to home</Button>
+          <Button
+            href={business.phone.telUrl}
+            variant="secondary"
+            class="w-full sm:w-auto"
+            ariaLabel={`Call ${business.phone.display}`}
+          >
+            Call {business.phone.display}
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</MainLayout>

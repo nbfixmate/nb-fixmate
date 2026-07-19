@@ -74,7 +74,10 @@ const trustPoints = [
       )
     }
 
-    <div class:list={["grid gap-5 sm:grid-cols-2 lg:grid-cols-3", showImage ? "mt-12" : "mt-10"]}>
+    <div
+      class:list={["grid gap-5 sm:grid-cols-2 lg:grid-cols-3", showImage ? "mt-12" : "mt-10"]}
+      data-reveal-stagger
+    >
       {
         serviceAreaRegions.map((region) => (
           <article class="rounded-[2px] border border-border bg-white p-5">

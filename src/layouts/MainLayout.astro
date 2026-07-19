@@ -3,6 +3,7 @@ import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
 import JsonLd from "../components/seo/JsonLd.astro";
 import QuoteModal from "../components/ui/QuoteModal.astro";
+import RevealInit from "../components/ui/RevealInit.astro";
 import WhatsAppButton from "../components/ui/WhatsAppButton.astro";
 import { site } from "../config/site";
 import { buildLocalBusinessSchema } from "../lib/schema";
@@ -75,6 +76,9 @@ const localBusinessSchema = buildLocalBusinessSchema();
     <meta name="twitter:image" content={imageUrl} />
     <title>{pageTitle}</title>
     {!noindex && <JsonLd data={localBusinessSchema} />}
+    <script is:inline>
+      document.documentElement.classList.add("reveal-enabled");
+    </script>
   </head>
   <body>
     <a
@@ -90,5 +94,6 @@ const localBusinessSchema = buildLocalBusinessSchema();
     <Footer />
     <WhatsAppButton />
     <QuoteModal />
+    <RevealInit />
   </body>
 </html>
