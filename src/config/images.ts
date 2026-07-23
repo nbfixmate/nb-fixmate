@@ -1,7 +1,7 @@
 /**
- * Local stock image paths.
- * These are generic Unsplash/Pexels service imagery, not NB Fixmate project photos.
- * Replace with authentic client photography before a trust-focused launch.
+ * Shared page imagery paths.
+ * Gallery project photos live in `src/config/gallery.ts`.
+ * Some banners and CTAs may still use generic service imagery.
  */
 export const images = {
   hero: {
@@ -85,16 +85,16 @@ export const images = {
       alt: "Modern renovated kitchen representing completed home improvement work",
     },
     intro: {
-      src: "/images/gallery/workshop.jpg",
-      alt: "Organized hand tools ready for handyman and property maintenance work",
+      src: "/images/gallery/adelaide-handyman-laminate-flooring-installation.jpg",
+      alt: "Light oak laminate flooring installed with white skirting in an Adelaide home",
     },
     imageCta: {
-      src: "/images/gallery/painting-work.jpg",
-      alt: "Handyman painting during home renovation and property maintenance",
+      src: "/images/gallery/adelaide-handyman-modern-metal-fence-installation.jpg",
+      alt: "Dark charcoal metal fence with lattice top installed at a modern Adelaide home",
     },
     quoteCta: {
-      src: "/images/gallery/tools.jpg",
-      alt: "Hammer and nails on timber representing practical handyman repair work",
+      src: "/images/gallery/adelaide-handyman-clothesline-installation.jpg",
+      alt: "Fold-down clothesline installed on posts in an Adelaide backyard",
     },
   },
   contactPage: {

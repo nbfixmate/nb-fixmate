@@ -1,7 +1,6 @@
 ---
 import AboutPreviewSection from "../components/sections/AboutPreviewSection.astro";
 import FaqSection from "../components/sections/FaqSection.astro";
-import GalleryFutureSection from "../components/sections/GalleryFutureSection.astro";
 import GalleryPreviewSection from "../components/sections/GalleryPreviewSection.astro";
 import ImageCTASection from "../components/sections/ImageCTASection.astro";
 import PageBannerSection from "../components/sections/PageBannerSection.astro";
@@ -13,27 +12,27 @@ import MainLayout from "../layouts/MainLayout.astro";
 
 <MainLayout
   title="Gallery"
-  description="Browse examples of handyman and property maintenance work NB Fixmate supports across Adelaide, including repairs, painting, carpentry, tiling, and renovations. Authentic project photos coming soon."
+  description="Browse real NB Fixmate project photos from handyman and property maintenance work across Adelaide, including flooring, fencing, tiling, decking, and outdoor installs."
   canonical="/gallery"
   image={site.defaultOpenGraphImage}
 >
   <PageBannerSection
     eyebrow="Gallery"
     title="Handyman & Property Maintenance Work in Adelaide"
-    description="A visual look at the practical repair, renovation, and maintenance work NB Fixmate supports across Adelaide and surrounding areas."
+    description="Real photos from completed flooring, fencing, tiling, and outdoor handyman jobs across Adelaide and surrounding areas."
     imageSrc={images.galleryPage.banner.src}
     imageAlt={images.galleryPage.banner.alt}
   />
 
   <AboutPreviewSection
-    eyebrow="What you are viewing"
-    title="Examples of the Work We Support"
-    description="This gallery uses stock images to show the types of handyman and property maintenance services NB Fixmate can help with across Adelaide."
-    body="These photos are not completed NB Fixmate projects. Authentic project photography will replace them as real job photos become available."
+    eyebrow="Our work"
+    title="Completed Jobs Across Adelaide"
+    description="This gallery features authentic photos from NB Fixmate projects, showing the practical repair, renovation, and maintenance work we deliver for local homes."
+    body="From floating floors and timber finishes to fencing, gates, and outdoor installs, each photo reflects work completed for Adelaide clients."
     trustPoints={[
-      "Stock examples of repairs, painting, carpentry, and tiling",
-      "Honest labelling until real project photos are ready",
+      "Real flooring, fencing, tiling, and outdoor project photos",
       "Fully insured handyman support across Adelaide",
+      "Free quotes with no obligation to book",
     ]}
     imageSrc={images.galleryPage.intro.src}
     imageAlt={images.galleryPage.intro.alt}
@@ -44,14 +43,12 @@ import MainLayout from "../layouts/MainLayout.astro";
   />
 
   <GalleryPreviewSection
-    eyebrow="Service examples"
-    title="Types of Handyman Work Across Adelaide"
-    description="Browse example imagery by service type. When you see the kind of work you need, request a free quote with your suburb and a short job description."
+    eyebrow="Recent projects"
+    title="Flooring, Fencing & Handyman Work Across Adelaide"
+    description="Browse completed job photos by service type. When you see the kind of work you need, request a free quote with your suburb and a short job description."
     showViewAll={false}
     surface
   />
-
-  <GalleryFutureSection surface={false} />
 
   <ImageCTASection
     title="Need This Kind of Work Done at Your Property?"

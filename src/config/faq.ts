@@ -69,7 +69,7 @@ export const faqItems: FaqItem[] = [
     id: "gallery-photos",
     question: "Are the gallery photos from completed NB Fixmate projects?",
     answer:
-      "Not yet. The current gallery uses stock images to show the types of handyman and property maintenance work NB Fixmate supports across Adelaide. Authentic project photos will be added as they become available.",
+      "Yes. The gallery shows photos from real NB Fixmate jobs across Adelaide, including flooring, fencing, tiling, decking, and outdoor installs. More project photos will be added as new work is completed.",
   },
 ];
 
