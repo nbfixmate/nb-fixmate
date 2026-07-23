@@ -3,6 +3,7 @@ export interface GalleryItem {
   category: string;
   alt: string;
   image: string;
+  state?: "before" | "after";
 }
 
 /** Authentic NB Fixmate project photos from completed Adelaide jobs. */
@@ -32,6 +33,18 @@ export const galleryItems: GalleryItem[] = [
     image: "/images/gallery/adelaide-handyman-clothesline-installation.jpg",
   },
   {
+    title: "Turf lawn installation",
+    category: "Landscaping",
+    alt: "Freshly laid turf lawn with sprinkler watering and new shrubs planted along a metal fence in Adelaide",
+    image: "/images/gallery/adelaide-handyman-turf-lawn-installation.jpg",
+  },
+  {
+    title: "Hoop-top fence and double gate",
+    category: "Fencing",
+    alt: "Black tubular hoop-top metal fence with a double gate installed along a residential Adelaide front yard",
+    image: "/images/gallery/adelaide-handyman-hoop-top-fence-double-gate.jpg",
+  },
+  {
     title: "Hybrid flooring with feature wall",
     category: "Flooring",
     alt: "Timber-look hybrid flooring installed in a room with a dark green feature wall and white skirting",
@@ -42,6 +55,18 @@ export const galleryItems: GalleryItem[] = [
     category: "Fencing",
     alt: "Cream timber picket fence with square lattice privacy extension at a suburban Adelaide property",
     image: "/images/gallery/adelaide-handyman-picket-fence-lattice-privacy.jpg",
+  },
+  {
+    title: "New turf being watered in",
+    category: "Landscaping",
+    alt: "Newly installed turf lawn being watered with a sprinkler beside a charcoal metal boundary fence in Adelaide",
+    image: "/images/gallery/adelaide-handyman-new-turf-watering.jpg",
+  },
+  {
+    title: "Hoop-top front fence install",
+    category: "Fencing",
+    alt: "Black hoop-top tubular metal fence installed along a suburban front yard with flowering shrubs in Adelaide",
+    image: "/images/gallery/adelaide-handyman-hoop-top-front-fence.jpg",
   },
   {
     title: "Timber flooring and skirting",
@@ -56,16 +81,42 @@ export const galleryItems: GalleryItem[] = [
     image: "/images/gallery/adelaide-handyman-colorbond-side-gate.jpg",
   },
   {
+    title: "On-site fencing carpentry",
+    category: "Fencing",
+    alt: "NB Fixmate branded van and miter saw set up during timber picket fence installation in Adelaide",
+    image: "/images/gallery/adelaide-handyman-fencing-worksite-van.jpg",
+  },
+  {
     title: "Flooring trim around wardrobe",
     category: "Flooring",
     alt: "Timber-look flooring finished with matching scotia trim along a white sliding wardrobe",
     image: "/images/gallery/adelaide-handyman-flooring-trim-finish.jpg",
   },
   {
+    title: "Hoop-top fence along the street",
+    category: "Fencing",
+    alt: "Black tubular hoop-top fence freshly installed along a residential sidewalk and front lawn in Adelaide",
+    image: "/images/gallery/adelaide-handyman-hoop-top-fence-installation.jpg",
+  },
+  {
     title: "Timber deck maintenance",
     category: "Decking",
     alt: "Outdoor timber decking planks on an Adelaide rooftop terrace ready for maintenance work",
     image: "/images/gallery/adelaide-handyman-timber-deck-maintenance.jpg",
+  },
+  {
+    title: "Weathered deck before restoration",
+    category: "Decking",
+    alt: "Close-up of weathered timber deck boards with peeling stain before deck restoration in Adelaide",
+    image: "/images/gallery/adelaide-handyman-weathered-deck-restoration.jpg",
+    state: "before",
+  },
+  {
+    title: "Damaged picket fence before repair",
+    category: "Fencing",
+    alt: "Damaged cream timber picket fence and sagging gate with broken pickets before repair in Adelaide",
+    image: "/images/gallery/adelaide-handyman-picket-fence-repair-before.jpg",
+    state: "before",
   },
   {
     title: "Hallway flooring finish",

@@ -1,7 +1,6 @@
 /**
  * Shared page imagery paths.
- * Gallery project photos live in `src/config/gallery.ts`.
- * Some banners and CTAs may still use generic service imagery.
+ * Gallery and CTA backgrounds use authentic NB Fixmate project photos where possible.
  */
 export const images = {
   hero: {
@@ -44,12 +43,12 @@ export const images = {
       alt: "Paint roller and supplies ready for home painting and renovation work",
     },
     imageCta: {
-      src: "/images/about/cta.jpg",
-      alt: "Handyman using a cordless drill during home repair and assembly work",
+      src: "/images/gallery/adelaide-handyman-timber-flooring-skirting.jpg",
+      alt: "Light timber flooring with dark skirting boards installed in an Adelaide home",
     },
     quoteCta: {
-      src: "/images/about/quote.jpg",
-      alt: "Hammer and nails on timber representing practical handyman repair work",
+      src: "/images/gallery/adelaide-handyman-modern-metal-fence-installation.jpg",
+      alt: "Dark charcoal metal fence with lattice top installed at a modern Adelaide home",
     },
   },
   localService: {
@@ -71,12 +70,12 @@ export const images = {
       alt: "Plastering and wall finishing work for home repairs and renovations",
     },
     imageCta: {
-      src: "/images/services-page/cta.jpg",
-      alt: "Handyman painting during home renovation and property maintenance",
+      src: "/images/gallery/adelaide-handyman-bathroom-shower-tiling.jpg",
+      alt: "Bathroom shower tiling with dark brown tiles and white grout in Adelaide",
     },
     quoteCta: {
-      src: "/images/services-page/quote.jpg",
-      alt: "Cordless drill on a worksite floor during handyman repair work",
+      src: "/images/gallery/adelaide-handyman-hoop-top-fence-double-gate.jpg",
+      alt: "Black hoop-top metal fence and double gate installed in an Adelaide front yard",
     },
   },
   galleryPage: {
@@ -89,12 +88,12 @@ export const images = {
       alt: "Light oak laminate flooring installed with white skirting in an Adelaide home",
     },
     imageCta: {
-      src: "/images/gallery/adelaide-handyman-modern-metal-fence-installation.jpg",
-      alt: "Dark charcoal metal fence with lattice top installed at a modern Adelaide home",
+      src: "/images/gallery/adelaide-handyman-turf-lawn-installation.jpg",
+      alt: "Freshly laid turf lawn and planting along a metal fence in Adelaide",
     },
     quoteCta: {
-      src: "/images/gallery/adelaide-handyman-clothesline-installation.jpg",
-      alt: "Fold-down clothesline installed on posts in an Adelaide backyard",
+      src: "/images/gallery/adelaide-handyman-picket-fence-lattice-privacy.jpg",
+      alt: "Cream picket fence with lattice privacy extension at an Adelaide property",
     },
   },
   contactPage: {
@@ -103,12 +102,12 @@ export const images = {
       alt: "Hand sanding a wall during preparation for property maintenance work",
     },
     imageCta: {
-      src: "/images/contact/cta.jpg",
-      alt: "Handyman using a cordless drill during home repair and assembly work",
+      src: "/images/gallery/adelaide-handyman-colorbond-side-gate.jpg",
+      alt: "Charcoal Colorbond side gate installed beside a brick home in Adelaide",
     },
     quoteCta: {
-      src: "/images/contact/quote.jpg",
-      alt: "Person using a phone to request a handyman quote",
+      src: "/images/gallery/adelaide-handyman-hoop-top-front-fence.jpg",
+      alt: "Black hoop-top tubular metal fence installed along a suburban Adelaide front yard",
     },
   },
   projects: {
@@ -117,12 +116,12 @@ export const images = {
       "Property maintenance and home improvement work in progress",
   },
   imageCta: {
-    background: "/images/cta/handyman-workshop.jpg",
-    alt: "Organized hand tools on a workshop wall ready for handyman and repair work",
+    background: "/images/gallery/adelaide-handyman-modern-metal-fence-installation.jpg",
+    alt: "Dark charcoal metal fence with lattice top installed at a modern Adelaide home",
   },
   quoteCta: {
-    background: "/images/cta/quote-cta.jpg",
-    alt: "Tradesperson painting a wall during home renovation and maintenance work",
+    background: "/images/gallery/adelaide-handyman-hoop-top-fence-double-gate.jpg",
+    alt: "Black hoop-top metal fence and double gate installed in an Adelaide front yard",
   },
   placeholders: {
     project: "/images/placeholders/project-placeholder.jpg",
