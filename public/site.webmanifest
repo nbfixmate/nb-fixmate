@@ -3,10 +3,22 @@
   "short_name": "NB Fixmate",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FFFFFF",
+  "background_color": "#000000",
   "theme_color": "#FD7C2F",
   "lang": "en-AU",
   "icons": [
+    {
+      "src": "/favicons/favicon-48x48.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicons/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
     {
       "src": "/favicons/android-chrome-192x192.png",
       "sizes": "192x192",

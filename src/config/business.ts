@@ -24,6 +24,7 @@ export interface BusinessConfiguration {
   social: {
     facebookUrl: string;
     instagramUrl: string;
+    tiktokUrl: string;
     linkedinUrl: string;
     googleBusinessProfileUrl: string;
   };
@@ -57,8 +58,9 @@ export const business: BusinessConfiguration = {
     mapsUrl: "",
   },
   social: {
-    facebookUrl: "",
-    instagramUrl: "",
+    facebookUrl: "https://www.facebook.com/people/NB-fixmate/61581736023870/",
+    instagramUrl: "https://www.instagram.com/nbfixmate/",
+    tiktokUrl: "https://www.tiktok.com/@nbfixmate",
     linkedinUrl: "",
     googleBusinessProfileUrl: "",
   },

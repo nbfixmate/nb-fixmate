@@ -14,6 +14,7 @@ export function buildLocalBusinessSchema() {
   const sameAs = nonEmptyUrls([
     business.social.facebookUrl,
     business.social.instagramUrl,
+    business.social.tiktokUrl,
     business.social.linkedinUrl,
     business.social.googleBusinessProfileUrl,
   ]);
