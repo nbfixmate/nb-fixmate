@@ -15,6 +15,12 @@ export const galleryItems: GalleryItem[] = [
     image: "/images/gallery/adelaide-handyman-laminate-flooring-installation.jpg",
   },
   {
+    title: "Garden shed installation",
+    category: "Sheds",
+    alt: "Completed dark charcoal metal garden shed with white trim installed in an Adelaide backyard",
+    image: "/images/gallery/adelaide-handyman-garden-shed-completed.jpg",
+  },
+  {
     title: "Modern metal fence installation",
     category: "Fencing",
     alt: "Dark charcoal metal fence with lattice top and stone-look base along a modern Adelaide home",
@@ -25,6 +31,12 @@ export const galleryItems: GalleryItem[] = [
     category: "Tiling",
     alt: "Shower floor tiling with dark brown tiles, white grout, and a central drain in an Adelaide bathroom",
     image: "/images/gallery/adelaide-handyman-bathroom-shower-tiling.jpg",
+  },
+  {
+    title: "Garden shed with doors open",
+    category: "Sheds",
+    alt: "Metal garden shed with double doors open showing the concrete floor and braced door panels in Adelaide",
+    image: "/images/gallery/adelaide-handyman-garden-shed-doors-open.jpg",
   },
   {
     title: "Fold-down clothesline install",
@@ -39,10 +51,28 @@ export const galleryItems: GalleryItem[] = [
     image: "/images/gallery/adelaide-handyman-turf-lawn-installation.jpg",
   },
   {
+    title: "Garden shed interior finish",
+    category: "Sheds",
+    alt: "Interior of a newly installed metal garden shed with corrugated walls and concrete slab floor in Adelaide",
+    image: "/images/gallery/adelaide-handyman-garden-shed-interior.jpg",
+  },
+  {
     title: "Hoop-top fence and double gate",
     category: "Fencing",
     alt: "Black tubular hoop-top metal fence with a double gate installed along a residential Adelaide front yard",
     image: "/images/gallery/adelaide-handyman-hoop-top-fence-double-gate.jpg",
+  },
+  {
+    title: "Garden shed frame assembly",
+    category: "Sheds",
+    alt: "Metal garden shed walls and roof frame under assembly on a concrete slab in an Adelaide backyard",
+    image: "/images/gallery/adelaide-handyman-garden-shed-frame-assembly.jpg",
+  },
+  {
+    title: "Garden shed base layout",
+    category: "Sheds",
+    alt: "Garden shed base rails laid out on a concrete slab during installation in Adelaide",
+    image: "/images/gallery/adelaide-handyman-garden-shed-base-layout.jpg",
   },
   {
     title: "Hybrid flooring with feature wall",

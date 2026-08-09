@@ -17,6 +17,12 @@ const services = defineCollection({
   }),
 });
 
+const projectGalleryImage = z.object({
+  src: z.string(),
+  alt: z.string(),
+  caption: z.string().optional(),
+});
+
 const projects = defineCollection({
   loader: glob({ base: "./src/content/projects", pattern: "**/*.md" }),
   schema: z.object({
@@ -27,11 +33,18 @@ const projects = defineCollection({
     location: z.string(),
     beforeImage: z.string().optional(),
     afterImage: z.string().optional(),
-    featuredImage: z.string().optional(),
+    featuredImage: z.string(),
     featured: z.boolean(),
     published: z.boolean(),
     completionDate: z.coerce.date().optional(),
     imageAlt: z.string(),
+    seoTitle: z.string(),
+    seoDescription: z.string(),
+    eyebrow: z.string().optional(),
+    galleryImages: z.array(projectGalleryImage).default([]),
+    offerTitle: z.string().optional(),
+    offerDescription: z.string().optional(),
+    offerPoints: z.array(z.string()).default([]),
   }),
 });
 
