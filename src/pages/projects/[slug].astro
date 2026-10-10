@@ -32,9 +32,12 @@ const {
   seoTitle,
   seoDescription,
   eyebrow = "Project case study",
+  galleryTitle = "Project Photos",
+  galleryDescription = "Photos from this Adelaide handyman project, from preparation through to the finished result.",
   galleryImages,
   offerTitle = "Need Similar Work at Your Property?",
   offerDescription = "Tell NB Fixmate what you need and your Adelaide suburb. Fully insured handyman support with a free quote and no obligation to book.",
+  offerBody = "From repairs and renovations to outdoor installs and property maintenance, NB Fixmate supports practical handyman work across Adelaide and surrounding areas.",
   offerPoints,
 } = project.data;
 ---
@@ -80,8 +83,8 @@ const {
             <Button href="/contact" openQuote class="w-full sm:w-auto">
               Request a free quote
             </Button>
-            <Button href="/gallery" variant="secondary" class="w-full sm:w-auto">
-              View gallery
+            <Button href="/projects" variant="secondary" class="w-full sm:w-auto">
+              All case studies
             </Button>
           </div>
         </div>
@@ -95,8 +98,8 @@ const {
         <Container>
           <SectionHeading
             eyebrow="Project photos"
-            title="From Kit Layout to Finished Shed"
-            description="Photos from this Adelaide garden shed installation, including preparation, assembly, and the completed result."
+            title={galleryTitle}
+            description={galleryDescription}
             alignment="center"
           />
           <div
@@ -128,14 +131,14 @@ const {
     eyebrow="Similar work"
     title={offerTitle}
     description={offerDescription}
-    body="From metal garden sheds to other backyard storage and outdoor handyman work, NB Fixmate supports practical installs across Adelaide and surrounding areas."
+    body={offerBody}
     trustPoints={
       offerPoints.length > 0
         ? offerPoints
         : [
-            "Garden shed assembly and installation",
-            "Outdoor storage and backyard handyman work",
-            "Free quotes across Adelaide",
+            "Fully insured handyman and renovation support",
+            "Practical upgrades for Adelaide homes",
+            "Free quotes with no obligation to book",
           ]
     }
     imageSrc={galleryImages[2]?.src ?? featuredImage}

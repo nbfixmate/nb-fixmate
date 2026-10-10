@@ -4,10 +4,21 @@ export interface GalleryItem {
   alt: string;
   image: string;
   state?: "before" | "after";
+  href?: string;
 }
+
+const kitchenCaseStudy = "/projects/kitchen-renovation-adelaide";
+const shedCaseStudy = "/projects/garden-shed-installation-adelaide";
 
 /** Authentic NB Fixmate project photos from completed Adelaide jobs. */
 export const galleryItems: GalleryItem[] = [
+  {
+    title: "Kitchen renovation completed",
+    category: "Kitchens",
+    alt: "Completed modern Adelaide kitchen with white cabinets, charcoal countertops, and wood-look flooring",
+    image: "/images/gallery/adelaide-handyman-kitchen-renovation-completed.jpg",
+    href: kitchenCaseStudy,
+  },
   {
     title: "Laminate flooring installation",
     category: "Flooring",
@@ -15,10 +26,33 @@ export const galleryItems: GalleryItem[] = [
     image: "/images/gallery/adelaide-handyman-laminate-flooring-installation.jpg",
   },
   {
+    title: "Kitchen before renovation",
+    category: "Kitchens",
+    alt: "Dated Adelaide kitchen before renovation with beige tiles and worn laminate benches",
+    image: "/images/gallery/adelaide-handyman-kitchen-renovation-before.jpg",
+    state: "before",
+    href: kitchenCaseStudy,
+  },
+  {
     title: "Garden shed installation",
     category: "Sheds",
     alt: "Completed dark charcoal metal garden shed with white trim installed in an Adelaide backyard",
     image: "/images/gallery/adelaide-handyman-garden-shed-completed.jpg",
+    href: shedCaseStudy,
+  },
+  {
+    title: "Kitchen renovation dining view",
+    category: "Kitchens",
+    alt: "Wide view of renovated Adelaide kitchen and dining area with wood-look flooring",
+    image: "/images/gallery/adelaide-handyman-kitchen-renovation-dining-view.jpg",
+    href: kitchenCaseStudy,
+  },
+  {
+    title: "Kitchen before and after",
+    category: "Kitchens",
+    alt: "Side-by-side before and after comparison of an Adelaide kitchen renovation by NB Fixmate",
+    image: "/images/gallery/adelaide-handyman-kitchen-renovation-before-after.jpg",
+    href: kitchenCaseStudy,
   },
   {
     title: "Modern metal fence installation",
@@ -37,6 +71,7 @@ export const galleryItems: GalleryItem[] = [
     category: "Sheds",
     alt: "Metal garden shed with double doors open showing the concrete floor and braced door panels in Adelaide",
     image: "/images/gallery/adelaide-handyman-garden-shed-doors-open.jpg",
+    href: shedCaseStudy,
   },
   {
     title: "Fold-down clothesline install",
@@ -55,6 +90,7 @@ export const galleryItems: GalleryItem[] = [
     category: "Sheds",
     alt: "Interior of a newly installed metal garden shed with corrugated walls and concrete slab floor in Adelaide",
     image: "/images/gallery/adelaide-handyman-garden-shed-interior.jpg",
+    href: shedCaseStudy,
   },
   {
     title: "Hoop-top fence and double gate",
@@ -67,12 +103,14 @@ export const galleryItems: GalleryItem[] = [
     category: "Sheds",
     alt: "Metal garden shed walls and roof frame under assembly on a concrete slab in an Adelaide backyard",
     image: "/images/gallery/adelaide-handyman-garden-shed-frame-assembly.jpg",
+    href: shedCaseStudy,
   },
   {
     title: "Garden shed base layout",
     category: "Sheds",
     alt: "Garden shed base rails laid out on a concrete slab during installation in Adelaide",
     image: "/images/gallery/adelaide-handyman-garden-shed-base-layout.jpg",
+    href: shedCaseStudy,
   },
   {
     title: "Hybrid flooring with feature wall",

@@ -1,0 +1,88 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "../../components/cards/ProjectCard.astro";
+import FaqSection from "../../components/sections/FaqSection.astro";
+import PageBannerSection from "../../components/sections/PageBannerSection.astro";
+import QuoteCTASection from "../../components/sections/QuoteCTASection.astro";
+import Container from "../../components/ui/Container.astro";
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import { images } from "../../config/images";
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const projects = (
+  await getCollection("projects", ({ data }) => data.published)
+).sort((a, b) => {
+  if (a.data.featured !== b.data.featured) {
+    return a.data.featured ? -1 : 1;
+  }
+
+  const aDate = a.data.completionDate?.getTime() ?? 0;
+  const bDate = b.data.completionDate?.getTime() ?? 0;
+  return bDate - aDate;
+});
+
+const featuredImage =
+  projects[0]?.data.featuredImage ?? images.galleryPage.banner.src;
+---
+
+<MainLayout
+  title="Case Studies"
+  description="Browse NB Fixmate project case studies from Adelaide, including kitchen renovations, garden shed installs, and practical handyman work for local homes."
+  canonical="/projects"
+  image={featuredImage}
+>
+  <PageBannerSection
+    eyebrow="Case studies"
+    title="Real Handyman Projects Across Adelaide"
+    description="Detailed looks at completed NB Fixmate jobs, from kitchen renovations to garden shed installs. See the work, then request a free quote for your property."
+    imageSrc={featuredImage}
+    imageAlt={projects[0]?.data.imageAlt ?? images.galleryPage.banner.alt}
+  />
+
+  <section class="bg-white py-16 sm:py-24">
+    <Container>
+      <SectionHeading
+        eyebrow="Our work"
+        title="Featured Project Case Studies"
+        description="Each case study shows authentic photos and what was involved, so you can judge whether NB Fixmate is the right fit for your next job."
+        alignment="center"
+      />
+      <div
+        class="mt-10 grid gap-6 sm:grid-cols-2"
+        data-reveal-stagger
+      >
+        {
+          projects.map((project) => (
+            <ProjectCard
+              href={`/projects/${project.data.slug}`}
+              title={project.data.title}
+              shortDescription={project.data.shortDescription}
+              category={project.data.category}
+              location={project.data.location}
+              image={project.data.featuredImage}
+              imageAlt={project.data.imageAlt}
+            />
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <FaqSection
+    set="gallery"
+    eyebrow="FAQs"
+    title="Project & Quote FAQs"
+    description="Clear answers about our completed work photos, the services NB Fixmate offers, and how to request a free quote."
+    surface
+    showCta
+    ctaLabel="Request a free quote"
+    ctaHref="/contact"
+  />
+
+  <QuoteCTASection
+    title="Ready for a Free Quote?"
+    description="Tell NB Fixmate about your job and your Adelaide suburb. Fully insured handyman and property maintenance support, with no obligation to book."
+    imageSrc={featuredImage}
+    surface={false}
+  />
+</MainLayout>

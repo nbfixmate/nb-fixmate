@@ -41,9 +41,12 @@ const projects = defineCollection({
     seoTitle: z.string(),
     seoDescription: z.string(),
     eyebrow: z.string().optional(),
+    galleryTitle: z.string().optional(),
+    galleryDescription: z.string().optional(),
     galleryImages: z.array(projectGalleryImage).default([]),
     offerTitle: z.string().optional(),
     offerDescription: z.string().optional(),
+    offerBody: z.string().optional(),
     offerPoints: z.array(z.string()).default([]),
   }),
 });

@@ -12,8 +12,11 @@ completionDate: 2026-08-01
 seoTitle: "Garden Shed Installation Adelaide"
 seoDescription: "See a completed Adelaide garden shed installation by NB Fixmate. We assemble and install metal sheds and similar outdoor storage builds. Request a free quote."
 eyebrow: "Project case study"
+galleryTitle: "From Kit Layout to Finished Shed"
+galleryDescription: "Photos from this Adelaide garden shed installation, including preparation, assembly, and the completed result."
 offerTitle: "Need a Shed or Outdoor Storage Built?"
 offerDescription: "NB Fixmate can help with garden sheds and similar outdoor installs across Adelaide. Share your idea, kit type, or site photos and we will prepare a free quote."
+offerBody: "From metal garden sheds to other backyard storage and outdoor handyman work, NB Fixmate supports practical installs across Adelaide and surrounding areas."
 offerPoints:
   - "Metal garden shed assembly and installation"
   - "Outdoor storage builds sized to your backyard"

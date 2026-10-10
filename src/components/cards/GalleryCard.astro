@@ -8,49 +8,86 @@ interface Props {
   category?: string;
   location?: string;
   state?: "before" | "after";
+  href?: string;
 }
 
-const { image, alt, title, category, location, state } = Astro.props;
+const { image, alt, title, category, location, state, href } = Astro.props;
+
+const cardClass =
+  "overflow-hidden rounded-[2px] border border-border bg-white transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-sm";
 ---
 
-<article
-  class="overflow-hidden rounded-[2px] border border-border bg-white transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-sm"
->
-  {
-    image ? (
-      <img
-        src={image}
-        alt={alt}
-        class="aspect-[4/3] w-full object-cover"
-        loading="lazy"
-      />
-    ) : (
-      <div
-        class="flex aspect-[4/3] items-center justify-center bg-surface text-muted-foreground"
-        role="img"
-        aria-label={alt}
-      >
-        <ImageOff class="size-8" aria-hidden="true" />
+{
+  href ? (
+    <a href={href} class={`group block h-full ${cardClass}`}>
+      {image ? (
+        <img
+          src={image}
+          alt={alt}
+          class="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+          loading="lazy"
+        />
+      ) : (
+        <div
+          class="flex aspect-[4/3] items-center justify-center bg-surface text-muted-foreground"
+          role="img"
+          aria-label={alt}
+        >
+          <ImageOff class="size-8" aria-hidden="true" />
+        </div>
+      )}
+      <div class="p-5">
+        {category && (
+          <p class="font-heading text-sm font-semibold tracking-tight text-primary uppercase">
+            {category}
+          </p>
+        )}
+        <h3 class:list={["text-xl font-bold tracking-tight", category && "mt-2"]}>
+          {title}
+        </h3>
+        {(location || state) && (
+          <p class="mt-2 text-sm text-muted-foreground">
+            {[location, state && `${state} view`].filter(Boolean).join(" · ")}
+          </p>
+        )}
+        <span class="mt-3 inline-flex font-heading text-sm font-semibold tracking-tight text-accent uppercase transition-colors duration-200 group-hover:text-primary">
+          View case study
+        </span>
       </div>
-    )
-  }
-  <div class="p-5">
-    {
-      category && (
-        <p class="font-heading text-sm font-semibold tracking-tight text-primary uppercase">
-          {category}
-        </p>
-      )
-    }
-    <h3 class:list={["text-xl font-bold tracking-tight", category && "mt-2"]}>
-      {title}
-    </h3>
-    {
-      (location || state) && (
-        <p class="mt-2 text-sm text-muted-foreground">
-          {[location, state && `${state} view`].filter(Boolean).join(" · ")}
-        </p>
-      )
-    }
-  </div>
-</article>
+    </a>
+  ) : (
+    <article class={cardClass}>
+      {image ? (
+        <img
+          src={image}
+          alt={alt}
+          class="aspect-[4/3] w-full object-cover"
+          loading="lazy"
+        />
+      ) : (
+        <div
+          class="flex aspect-[4/3] items-center justify-center bg-surface text-muted-foreground"
+          role="img"
+          aria-label={alt}
+        >
+          <ImageOff class="size-8" aria-hidden="true" />
+        </div>
+      )}
+      <div class="p-5">
+        {category && (
+          <p class="font-heading text-sm font-semibold tracking-tight text-primary uppercase">
+            {category}
+          </p>
+        )}
+        <h3 class:list={["text-xl font-bold tracking-tight", category && "mt-2"]}>
+          {title}
+        </h3>
+        {(location || state) && (
+          <p class="mt-2 text-sm text-muted-foreground">
+            {[location, state && `${state} view`].filter(Boolean).join(" · ")}
+          </p>
+        )}
+      </div>
+    </article>
+  )
+}
