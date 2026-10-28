@@ -9,9 +9,17 @@ export interface GalleryItem {
 
 const kitchenCaseStudy = "/projects/kitchen-renovation-adelaide";
 const shedCaseStudy = "/projects/garden-shed-installation-adelaide";
+const houseCaseStudy = "/projects/house-renovation-adelaide";
 
 /** Authentic NB Fixmate project photos from completed Adelaide jobs. */
 export const galleryItems: GalleryItem[] = [
+  {
+    title: "House renovation living room",
+    category: "Renovations",
+    alt: "Renovated Adelaide living room with light wood flooring, bouclé sofa, and timber sliding doors",
+    image: "/images/gallery/adelaide-handyman-house-renovation-living-room.jpg",
+    href: houseCaseStudy,
+  },
   {
     title: "Kitchen renovation completed",
     category: "Kitchens",
@@ -20,10 +28,24 @@ export const galleryItems: GalleryItem[] = [
     href: kitchenCaseStudy,
   },
   {
+    title: "House renovation kitchen",
+    category: "Renovations",
+    alt: "Renovated Adelaide kitchen with light wood cabinets, cream benches, and wood-look flooring",
+    image: "/images/gallery/adelaide-handyman-house-renovation-kitchen.jpg",
+    href: houseCaseStudy,
+  },
+  {
     title: "Laminate flooring installation",
     category: "Flooring",
     alt: "Light oak laminate flooring with white skirting and a green feature wall in an Adelaide home",
     image: "/images/gallery/adelaide-handyman-laminate-flooring-installation.jpg",
+  },
+  {
+    title: "House renovation living dining",
+    category: "Renovations",
+    alt: "View from renovated Adelaide living area through to dining room with light wood flooring",
+    image: "/images/gallery/adelaide-handyman-house-renovation-living-dining.jpg",
+    href: houseCaseStudy,
   },
   {
     title: "Kitchen before renovation",
@@ -41,6 +63,13 @@ export const galleryItems: GalleryItem[] = [
     href: shedCaseStudy,
   },
   {
+    title: "House renovation bedroom",
+    category: "Renovations",
+    alt: "Renovated Adelaide main bedroom with light wood flooring and modern finishes",
+    image: "/images/gallery/adelaide-handyman-house-renovation-bedroom-main.jpg",
+    href: houseCaseStudy,
+  },
+  {
     title: "Kitchen renovation dining view",
     category: "Kitchens",
     alt: "Wide view of renovated Adelaide kitchen and dining area with wood-look flooring",
@@ -48,11 +77,32 @@ export const galleryItems: GalleryItem[] = [
     href: kitchenCaseStudy,
   },
   {
+    title: "House renovation kitchen dining",
+    category: "Renovations",
+    alt: "Adelaide kitchen breakfast bar and dining area after house renovation",
+    image: "/images/gallery/adelaide-handyman-house-renovation-kitchen-dining.jpg",
+    href: houseCaseStudy,
+  },
+  {
     title: "Kitchen before and after",
     category: "Kitchens",
     alt: "Side-by-side before and after comparison of an Adelaide kitchen renovation by NB Fixmate",
     image: "/images/gallery/adelaide-handyman-kitchen-renovation-before-after.jpg",
     href: kitchenCaseStudy,
+  },
+  {
+    title: "House renovation hallway",
+    category: "Renovations",
+    alt: "Renovated Adelaide hallway with light wood flooring and timber trim",
+    image: "/images/gallery/adelaide-handyman-house-renovation-hallway.jpg",
+    href: houseCaseStudy,
+  },
+  {
+    title: "House renovation bathroom",
+    category: "Renovations",
+    alt: "Renovated Adelaide bathroom with half-height beige tiling and timber wall cabinet",
+    image: "/images/gallery/adelaide-handyman-house-renovation-bathroom.jpg",
+    href: houseCaseStudy,
   },
   {
     title: "Modern metal fence installation",

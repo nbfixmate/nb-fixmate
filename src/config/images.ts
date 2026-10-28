@@ -6,6 +6,24 @@ export const images = {
   hero: {
     adelaideCity: "/images/hero/adelaide-city.jpg",
     alt: "View across Adelaide city skyline from a surrounding hillside",
+    slides: [
+      {
+        src: "/images/gallery/adelaide-handyman-house-renovation-living-room.jpg",
+        alt: "Renovated Adelaide living room with light wood flooring and timber sliding doors",
+      },
+      {
+        src: "/images/gallery/adelaide-handyman-kitchen-renovation-completed.jpg",
+        alt: "Completed modern Adelaide kitchen with white cabinets and charcoal benches",
+      },
+      {
+        src: "/images/gallery/adelaide-handyman-garden-shed-completed.jpg",
+        alt: "Completed dark charcoal metal garden shed installed in an Adelaide backyard",
+      },
+      {
+        src: "/images/gallery/adelaide-handyman-modern-metal-fence-installation.jpg",
+        alt: "Dark charcoal metal fence installed along a modern Adelaide home",
+      },
+    ],
   },
   banners: {
     about: {

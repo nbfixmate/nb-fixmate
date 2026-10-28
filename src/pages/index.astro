@@ -9,6 +9,7 @@ import ImageCTASection from "../components/sections/ImageCTASection.astro";
 import QuoteCTASection from "../components/sections/QuoteCTASection.astro";
 import ServiceAreasSection from "../components/sections/ServiceAreasSection.astro";
 import ServicesSection from "../components/sections/ServicesSection.astro";
+import TestimonialsSection from "../components/sections/TestimonialsSection.astro";
 import WhoWeHelpSection from "../components/sections/WhoWeHelpSection.astro";
 import WhyChooseUsSection from "../components/sections/WhyChooseUsSection.astro";
 import { site } from "../config/site";
@@ -36,6 +37,7 @@ import MainLayout from "../layouts/MainLayout.astro";
   <ServiceAreasSection surface={false} />
   <ImageCTASection />
   <GalleryPreviewSection limit={4} />
+  <TestimonialsSection surface featuredOnly />
   <FaqSection set="home" />
   <QuoteCTASection />
 </MainLayout>

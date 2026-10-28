@@ -57,6 +57,7 @@ const testimonials = defineCollection({
     customerName: z.string(),
     customerRole: z.string().optional(),
     customerType: z.string().optional(),
+    avatar: z.string().optional(),
     quote: z.string(),
     rating: z.number().int().min(1).max(5),
     featured: z.boolean(),

@@ -62,7 +62,9 @@ export const business: BusinessConfiguration = {
     instagramUrl: "https://www.instagram.com/nbfixmate/",
     tiktokUrl: "https://www.tiktok.com/@nbfixmate",
     linkedinUrl: "",
-    googleBusinessProfileUrl: "",
+    // Official NB Fixmate Google Business Profile (verified Maps place)
+    googleBusinessProfileUrl:
+      "https://www.google.com/maps/place/NB+Fixmate/data=!4m2!3m1!1s0x655216ba8e23b90f:0x8876c6d057063580",
   },
   credentials: {
     isFullyInsured: true,

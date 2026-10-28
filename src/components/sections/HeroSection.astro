@@ -20,21 +20,36 @@ const proofPoints = [
 const googleHref =
   business.social.googleBusinessProfileUrl ||
   `https://www.google.com/search?q=${encodeURIComponent(`${business.name} Adelaide`)}`;
+
+const heroSlides =
+  images.hero.slides.length > 0
+    ? images.hero.slides
+    : [{ src: images.hero.adelaideCity, alt: images.hero.alt }];
 ---
 
-<section data-reveal-static class="relative isolate overflow-hidden">
-  <img
-    src={images.hero.adelaideCity}
-    alt=""
-    width="1920"
-    height="1280"
-    class="absolute inset-0 size-full object-cover"
-    loading="eager"
-    fetchpriority="high"
-    aria-hidden="true"
-  />
+<section data-reveal-static class="hero relative isolate overflow-hidden">
+  <div class="hero-slides absolute inset-0 z-0" aria-hidden="true">
+    {
+      heroSlides.map((slide, index) => (
+        <img
+          src={slide.src}
+          alt=""
+          width="1600"
+          height="1200"
+          class:list={[
+            "hero-slide absolute inset-0 size-full object-cover",
+            index % 2 === 0 ? "hero-slide--zoom-in" : "hero-slide--zoom-out",
+            index === 0 && "is-active",
+          ]}
+          loading={index === 0 ? "eager" : "lazy"}
+          fetchpriority={index === 0 ? "high" : "auto"}
+          data-hero-slide
+        />
+      ))
+    }
+  </div>
   <div
-    class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/75 sm:bg-gradient-to-r sm:from-black/85 sm:via-black/65 sm:to-black/50"
+    class="hero-overlay absolute inset-0 z-[1]"
     aria-hidden="true"
   >
   </div>
@@ -46,7 +61,7 @@ const googleHref =
         class="mb-3 inline-flex max-w-full flex-wrap items-center justify-center gap-1.5 py-1 font-heading text-sm font-semibold tracking-tight text-white sm:mb-4 sm:gap-2.5 sm:text-lg"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Rate us on Google"
+        aria-label="Highly rated company on Google"
       >
         <svg
           class="size-5 shrink-0 sm:size-8"
@@ -78,7 +93,7 @@ const googleHref =
           ★★★★★
         </span>
         <span class="text-white/40" aria-hidden="true">·</span>
-        <span class="font-medium text-white/85">Rate us on Google</span>
+        <span class="font-medium text-white/85">Highly rated company on Google</span>
       </a>
       <Heading
         class="mx-auto max-w-4xl text-3xl tracking-tight text-balance break-words text-white sm:text-5xl md:text-6xl lg:text-7xl"
@@ -133,3 +148,102 @@ const googleHref =
     </div>
   </Container>
 </section>
+
+<style>
+  .hero-slide {
+    opacity: 0;
+    transform: scale(1);
+    transition: opacity 1.2s ease-in-out;
+    will-change: opacity, transform;
+  }
+
+  .hero-slide.is-active {
+    opacity: 1;
+  }
+
+  .hero-overlay {
+    background:
+      linear-gradient(
+        to bottom,
+        rgb(0 0 0 / 0.78) 0%,
+        rgb(0 0 0 / 0.62) 45%,
+        rgb(0 0 0 / 0.72) 100%
+      );
+  }
+
+  @media (min-width: 640px) {
+    .hero-overlay {
+      background:
+        linear-gradient(
+          to right,
+          rgb(0 0 0 / 0.82) 0%,
+          rgb(0 0 0 / 0.58) 55%,
+          rgb(0 0 0 / 0.48) 100%
+        ),
+        linear-gradient(
+          to bottom,
+          rgb(0 0 0 / 0.35) 0%,
+          rgb(0 0 0 / 0.2) 40%,
+          rgb(0 0 0 / 0.45) 100%
+        );
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-slide.is-active.hero-slide--zoom-in {
+      animation: hero-ken-burns-in 8s ease-out forwards;
+    }
+
+    .hero-slide.is-active.hero-slide--zoom-out {
+      animation: hero-ken-burns-out 8s ease-out forwards;
+    }
+  }
+
+  @keyframes hero-ken-burns-in {
+    from {
+      transform: scale(1);
+    }
+
+    to {
+      transform: scale(1.08);
+    }
+  }
+
+  @keyframes hero-ken-burns-out {
+    from {
+      transform: scale(1.08);
+    }
+
+    to {
+      transform: scale(1);
+    }
+  }
+</style>
+
+<script>
+  function initHeroSlider() {
+    const slides = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-hero-slide]"),
+    );
+
+    if (slides.length < 2) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) return;
+
+    let activeIndex = 0;
+    const intervalMs = 7000;
+
+    window.setInterval(() => {
+      slides[activeIndex]?.classList.remove("is-active");
+      activeIndex = (activeIndex + 1) % slides.length;
+      slides[activeIndex]?.classList.add("is-active");
+    }, intervalMs);
+  }
+
+  initHeroSlider();
+  document.addEventListener("astro:page-load", initHeroSlider);
+</script>
